@@ -1,8 +1,8 @@
 <?php
 require_once PATH_METIER."/Tuile.php";
-require_once "IDisplayable.php";
+require_once PATH_VUE."/IVue.php";
 
-class TuileVue implements IDisplayable
+class TuileVue implements IVue
 {
     public static function getHtml($tuile)
     {

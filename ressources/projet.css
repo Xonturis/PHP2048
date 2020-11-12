@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    background: #ecf0f1;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+/*region header*/
+.header {
+    margin: 0;
+    padding: 0;
+    position: sticky;
+    background: #f39c12;
+    top: 0;
+    height: 100px;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    font-size: 30px;
+    color: #ecf0f1;
+}
+
+.title {
+    display: inline-block;
+    width: fit-content;
+    font-size: 30px;
+    color: #ecf0f1;
+}
+/*endregion*/
+
+/*region plateau 2048*/
+plateau {
+    margin: 10px;
+}
+
+ligne {
+    display: block;
+}
+
+tuile {
+    margin: 10px;
+    height: 100px;
+    width: 100px;
+    background: beige;
+    border: solid black 1px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*region controls*/
+.controls-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    height: 200px;
+    width: 300px;
+}
+
+.control-up {
+    grid-column: 2;
+    grid-row: 1;
+}
+.control-down {
+    grid-column: 2;
+    grid-row: 2;
+}
+.control-left {
+    grid-column: 1;
+    grid-row: 2;
+}
+.control-right {
+    grid-column: 3;
+    grid-row: 2;
+}
+/*endregion*/
+/*endregion*/
+
+/*region footer*/
+.footer {
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    background: #2c3e50;
+    bottom: 0;
+    height: 90px;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-right {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    font-size: 15px;
+    color: #ecf0f1;
+}
+/*endregion*/

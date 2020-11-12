@@ -1,12 +1,13 @@
 <?php
 require_once PATH_METIER."/Plateau.php";
 require_once "LigneVue.php";
-require_once "IDisplayable.php";
+require_once PATH_VUE."/IVue.php";
 
-class PlateauVue implements IDisplayable
+class PlateauVue implements IVue
 {
-    public static function getHtml($plateau)
+    public static function getHtml($toDisplay)
     {
+        $plateau = $toDisplay["plateau"];
         ?>
         <plateau>
             <?php

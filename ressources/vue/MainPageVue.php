@@ -6,12 +6,16 @@ class MainPageVue{
 
     public static function getHtml($toDisplay=NULL){
         ?>
-        <div class>
+        <div class="">
             <?php
 
             ?>
         </div>
+<<<<<<< Updated upstream
 <?php
+=======
+        <?php
+>>>>>>> Stashed changes
     }
 
 }

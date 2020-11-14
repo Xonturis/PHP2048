@@ -1,6 +1,6 @@
 <?php
-require_once PATH_VUE."/PlateurVue.php";
-require_once PATH_VUE."/ClassementVue.php";
+require_once PATH_VUE."/plateau/PlateauVue.php";
+require_once PATH_VUE."/classement/ClassementVue.php";
 
 class MainPageVue{
 
@@ -11,6 +11,7 @@ class MainPageVue{
 
             ?>
         </div>
+<?php
     }
 
 }

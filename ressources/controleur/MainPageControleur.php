@@ -1,7 +1,7 @@
 <?php
 
 
-class mainPageControleur
+class MainPageControleur
 {
     public static function showPage(){
 

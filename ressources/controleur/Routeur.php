@@ -21,6 +21,7 @@ class Routeur {
         var_dump($_POST);
         if(!isset($_SESSION["user"]) && !isset($_POST["controller"])) {
             // Router vers la connexion
+            echo("echo");
             ConnexionVue::getHtml();
             $isConnected = false;
         }

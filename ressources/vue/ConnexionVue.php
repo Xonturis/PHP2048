@@ -2,7 +2,7 @@
 
 class ConnexionVue
 {
-    public static function getHtml($toDisplay)
+    public static function getHtml($toDisplay=NULL)
     {
         ?>
         <form action="" method="post">

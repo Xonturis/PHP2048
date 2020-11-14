@@ -14,6 +14,7 @@ class Routeur {
     // Traite une requête entrante
     public static function routerRequete() {
         ob_start();
+
         HeaderVue::getHtml();
 
         if(!isset($_SESSION["user"])){

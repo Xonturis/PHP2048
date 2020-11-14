@@ -1,17 +1,33 @@
+html{
+    width: 100%;
+    height: 100%;
+}
+
 body {
     margin: 0;
     background: #ecf0f1;
+    width: 100%;
+    height: 100%;
 }
 
 * {
     font-family: 'Roboto', sans-serif;
 }
 
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+}
+
+
 /*region header*/
 .header {
     margin: 0;
     padding: 0;
-    position: sticky;
+    position: relative;
     background: #f39c12;
     top: 0;
     height: 100px;
@@ -37,6 +53,8 @@ body {
     color: #ecf0f1;
 }
 /*endregion*/
+
+
 
 /*region plateau 2048*/
 plateau {
@@ -90,13 +108,13 @@ tuile {
 
 /*region footer*/
 .footer {
-    position: fixed;
+    position: relative;
     margin: 0;
     padding: 0;
     background: #2c3e50;
-    bottom: 0;
     height: 90px;
     width: 100%;
+
 
     display: flex;
     justify-content: center;

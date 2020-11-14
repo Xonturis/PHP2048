@@ -8,9 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="projet.css">
+    <link rel="stylesheet" type="text/css" href="connexion.css">
+
     <title>Plateau de 2048</title>
 </head>
 <body>
-    <?= $content ?>
+    <div class="mainContainer">
+        <?= $content ?>
+    </div>
 </body>
 </html>

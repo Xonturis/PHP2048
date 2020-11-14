@@ -25,7 +25,8 @@ class Routeur {
             $isConnected = false;
         }
 
-        if($isConnected) {
+        $mainPage = isset($_POST["controller"]);
+        if($isConnected && $mainPage) {
             echo isset($_SESSION["user"]);
             $ctrlName = $_POST["controller"];
             $mthdName = $_POST["method"];
@@ -37,6 +38,8 @@ class Routeur {
             } catch (ReflectionException $exp) {
                 // todo handle err
             }
+        } else if($isConnected) {
+            // todo display main page
         }
 
         FooterVue::getHtml();

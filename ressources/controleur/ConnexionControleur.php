@@ -1,7 +1,7 @@
 <?php
 require_once PATH_MODELE.'/userDAO.php';
 
-class ConnexionControlleur{
+class ConnexionControleur{
 
     public static function connexionAttempt(){
         $result = UserDAO::getUser($_POST["username"],$_POST["password"]);

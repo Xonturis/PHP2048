@@ -10,4 +10,5 @@ require_once PATH_CONTROLEUR."/Routeur.php";
 require_once PATH_VUE."/ConnexionVue.php";
 
 session_start();
+
 Routeur::routerRequete();

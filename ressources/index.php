@@ -6,8 +6,8 @@ require_once PATH_METIER."/Plateau.php";
 require_once PATH_VUE."/controls/ControlsVue.php";
 require_once PATH_VUE."/structure/HeaderVue.php";
 require_once PATH_VUE."/structure/FooterVue.php";
-require_once PATH_CONTROLEUR."/Routeur.php";
 require_once PATH_VUE."/ConnexionVue.php";
+require_once PATH_CONTROLEUR."/Routeur.php";
 
 session_start();
 

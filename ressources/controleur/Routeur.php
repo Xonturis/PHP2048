@@ -2,8 +2,8 @@
 
 // Visiblement le seul moyen d'importer tous les fichiers d'un dossier
 // https://stackoverflow.com/questions/2692332/require-all-files-in-a-folder
-foreach (scandir(dirname(PATH_CONTROLEUR."/")) as $filename) {
-    $path = dirname(PATH_CONTROLEUR."/") . $filename;
+foreach (scandir(PATH_CONTROLEUR) as $filename) {
+    $path = PATH_CONTROLEUR. '/' . $filename;
     if (is_file($path)) {
         require_once($path);
     }
@@ -18,45 +18,20 @@ class Routeur {
         HeaderVue::getHtml();
 
         $isConnected = true;
-        if(!isset($_SESSION["user"])){
+        var_dump($_POST);
+        if(!isset($_SESSION["user"]) && !isset($_POST["controller"])) {
             // Router vers la connexion
             ConnexionVue::getHtml();
             $isConnected = false;
         }
 
-
-        // ?controller=.....&methode=.....
-//        if(isset($_GET["controller"])) {
-//            switch ($_GET["controller"]) {
-//                case "ControleurAuthentification":
-//                    switch ($_GET["method"]) {
-//                        case "authPseudo":
-//                            $this->ctrlAuthentification->authPseudo();
-//                            break;
-//                    }
-//                    break;
-//
-//                case "ControleurMessage";
-//                    switch ($_GET["method"]) {
-//                        case "afficher":
-//                            $this->ctrlMessage->afficher();
-//                            break;
-//                        case "ajoutMessage":
-//                            $this->ctrlMessage->ajoutMessage();
-//                            $this->ctrlMessage->afficher();
-//                            break;
-//                    }
-//            }
-//        }else{
-//            $this->ctrlAuthentification->accueil();
-//        }
-
         if($isConnected) {
+            echo isset($_SESSION["user"]);
             $ctrlName = $_POST["controller"];
             $mthdName = $_POST["method"];
 
-            $reflectionClass = new ReflectionClass($ctrlName);
             try {
+                $reflectionClass = new ReflectionClass($ctrlName);
                 $method = $reflectionClass->getMethod($mthdName);
                 $method->invoke(NULL);
             } catch (ReflectionException $exp) {

@@ -1,5 +1,7 @@
 <?php
 
+// Visiblement le seul moyen d'importer tous les fichiers d'un dossier
+// https://stackoverflow.com/questions/2692332/require-all-files-in-a-folder
 foreach (scandir(dirname(PATH_CONTROLEUR)) as $filename) {
     $path = dirname(PATH_CONTROLEUR) . '/' . $filename;
     if (is_file($path)) {

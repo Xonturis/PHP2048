@@ -1,8 +1,11 @@
 <?php
 
-require_once 'controleurAuthentification.php';
-require_once 'controleurMessage.php';
-
+foreach (scandir(dirname(PATH_CONTROLEUR)) as $filename) {
+    $path = dirname(PATH_CONTROLEUR) . '/' . $filename;
+    if (is_file($path)) {
+        require_once($path);
+    }
+}
 
 class Routeur {
 

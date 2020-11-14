@@ -5,8 +5,8 @@ require_once PATH_METIER."/User.php";
 class UserDAO
 {
 
-    public static function getUser($pseudo) {
-        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('SELECT password FROM JOUEURS where pseudo = :pseudo;');;
+    public static function getUser($pseudo) : ?User {
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('SELECT password FROM JOUEURS where pseudo = :pseudo;');
         $statement->bindParam(':pseudo', $pseudo);
         $statement->execute();
         $fetched=$statement->fetch(PDO::FETCH_ASSOC);

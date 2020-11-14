@@ -3,9 +3,9 @@ require_once PATH_VUE."/IVue.php";
 
 class HeaderVue implements IVue
 {
-    public static function getHtml($toDisplay)
+    public static function getHtml($toDisplay=NULL)
     {
-        $user = $toDisplay["user"];
+        $user = $_SESSION["user"];
         ?>
         <div class="header">
             <div class="title">2048, LE JEU</div>

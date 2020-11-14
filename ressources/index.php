@@ -6,17 +6,9 @@ require_once PATH_METIER."/Plateau.php";
 require_once PATH_VUE."/controls/ControlsVue.php";
 require_once PATH_VUE."/structure/HeaderVue.php";
 require_once PATH_VUE."/structure/FooterVue.php";
+require_once PATH_CONTROLEUR."/Routeur.php";
 
-$plateau = new Plateau();
 
-ob_start();
-$toDisplay = array();
-$toDisplay["user"] = UserDAO::getUser("toto");
-$toDisplay["plateau"] = $plateau;
-HeaderVue::getHtml($toDisplay);
-PlateauVue::getHtml($toDisplay);
+session_start();
 
-$content = ob_get_clean();
-require ("plateau_template.php");
-ControlsVue::displayControls();
-FooterVue::getHtml($toDisplay);
+Routeur::routerRequete();

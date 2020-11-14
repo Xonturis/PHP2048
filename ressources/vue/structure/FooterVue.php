@@ -4,7 +4,7 @@
 class FooterVue implements IVue
 {
 
-    public static function getHtml($toDisplay)
+    public static function getHtml($toDisplay=NULL)
     {
         ?>
         <div class="footer">

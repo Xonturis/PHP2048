@@ -5,9 +5,9 @@ require_once PATH_VUE."/IVue.php";
 
 class PlateauVue implements IVue
 {
-    public static function getHtml($toDisplay)
+    public static function getHtml($toDisplay=NULL)
     {
-        $plateau = $toDisplay["plateau"];
+        $plateau = $_SESSION["plateau"];
         ?>
         <plateau>
             <?php

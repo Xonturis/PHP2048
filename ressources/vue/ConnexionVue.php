@@ -1,6 +1,6 @@
 <?php
 
-class ConnexionVue
+class ConnexionVue implements IVue
 {
     public static function getHtml($toDisplay=NULL)
     {

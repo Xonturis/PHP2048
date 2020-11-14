@@ -5,7 +5,7 @@ require_once PATH_VUE."/IVue.php";
 
 class LigneVue implements IVue
 {
-    public static function getHtml($ligne)
+    public static function getHtml($ligne=NULL)
     {
         ?>
         <ligne>

@@ -3,5 +3,5 @@
 
 interface IVue
 {
-        public static function getHtml($toDisplay);
+        public static function getHtml($toDisplay=NULL);
 }

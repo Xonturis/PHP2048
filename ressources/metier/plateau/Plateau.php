@@ -33,12 +33,10 @@ class Plateau
 
 
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    //                              TO BE OPTIMIZED
+    //todo                          TO BE OPTIMIZED
     public function haut() {
-//        echo "HAUT";
         for($line = 1; $line < $this->size; $line++){
             for($column = 0; $column < $this->size; $column++) {
-//                echo "line:".$line." --- column:".$column."<br>";
                 $current = $line;
                 $above = $current-1;
                 while ($current > 0 && $this->tuiles[$current][$column]->moveTo($this->tuiles[$above][$column])){
@@ -50,10 +48,8 @@ class Plateau
     }
 
     public function bas() {
-//        echo "BAS";
         for($line = $this->size-1; $line >= 0; $line--){
             for($column = 0; $column < $this->size; $column++) {
-//                echo "line:".$line." --- column:".$column."<br>";
                 $current = $line;
                 $under = $current+1;
                 while ($current < $this->size-1 && $this->tuiles[$current][$column]->moveTo($this->tuiles[$under][$column])){
@@ -65,10 +61,8 @@ class Plateau
     }
 
     public function gauche() {
-//        echo "GAUCHE";
         for($line = 0; $line < $this->size; $line++){
             for($column = 1; $column < $this->size; $column++) {
-//                echo "line:".$line." --- column:".$column."<br>";
                 $current = $column;
                 $left = $current-1;
                 while ($current > 0 && $this->tuiles[$line][$current]->moveTo($this->tuiles[$line][$left])){
@@ -80,10 +74,8 @@ class Plateau
     }
 
     public function droite() {
-//        echo "DROITE";
         for($line = 0; $line < $this->size; $line++){
             for($column = $this->size-1; $column >= 0; $column--) {
-//                echo "line:".$line." --- column:".$column."<br>";
                 $current = $column;
                 $left = $current+1;
                 while ($current < $this->size-1 && $this->tuiles[$line][$current]->moveTo($this->tuiles[$line][$left])){
@@ -108,6 +100,7 @@ class Plateau
         $count = count($zeroScore);
 
         if($count == 0) {
+            // todo vue
             echo "perdu";
             return;
         }
@@ -115,19 +108,40 @@ class Plateau
         try {
             $zeroScore[random_int(0, $count - 1)]->setScore(2);
         } catch (Exception $e) {
-            //todo handle err
+            //todo vue
             echo $e->getMessage();
         }
     }
 
     public function reset() {
+        foreach ($this->tuiles as $ligne) {
+            foreach ($ligne as $tuile) {
+                $tuile->setScore(0);
+            }
+        }
 
+        $this->aleatTuile();
+        $this->aleatTuile();
     }
+
     public function getScore() {
-
+        $score = 0;
+        foreach ($this->tuiles as $ligne) {
+            foreach ($ligne as $tuile) {
+                $score += $tuile->getScore();
+            }
+        }
     }
-    public function getMaxTuile() {
 
+    public function getMaxTuile() {
+        $max = 0;
+        foreach ($this->tuiles as $ligne) {
+            foreach ($ligne as $tuile) {
+                $score = $tuile->getScore();
+                if($score > $max)
+                    $max = $score;
+            }
+        }
     }
 
     public function getLignes() {

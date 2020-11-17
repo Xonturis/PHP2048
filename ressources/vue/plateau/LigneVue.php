@@ -1,5 +1,5 @@
 <?php
-require_once PATH_METIER."/Ligne.php";
+require_once PATH_METIER . "/plateau/Ligne.php";
 require_once "TuileVue.php";
 require_once PATH_VUE."/IVue.php";
 
@@ -10,7 +10,7 @@ class LigneVue implements IVue
         ?>
         <ligne>
             <?php
-            foreach ($ligne->getCases() as $case){
+            foreach ($ligne->getTuiles() as $case){
                 TuileVue::getHtml($case);
             }
             ?>

@@ -1,11 +1,11 @@
 <?php
 
 
-class ControlsVue
+class ControlsVue implements IVue
 {
 
-    public static function displayControls() {
+    public static function getHtml($toDisplay = NULL)
+    {
         require(HOME_SITE."/controls.html");
     }
-
 }

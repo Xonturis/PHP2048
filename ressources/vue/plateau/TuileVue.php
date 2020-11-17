@@ -1,5 +1,5 @@
 <?php
-require_once PATH_METIER."/Tuile.php";
+require_once PATH_METIER . "/plateau/Tuile.php";
 require_once PATH_VUE."/IVue.php";
 
 class TuileVue implements IVue

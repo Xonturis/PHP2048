@@ -21,13 +21,14 @@ class Routeur {
         var_dump($_POST);
         if(!isset($_SESSION["user"]) && !isset($_POST["controller"])) {
             // Router vers la connexion
-            echo("echo");
+            echo("ROUTE_TO_CONNEXION<br>");
             ConnexionVue::getHtml();
             $isConnected = false;
         }
 
         $mainPage = isset($_POST["controller"]);
         if($isConnected && $mainPage) {
+            echo("ROUTE_TO_CONTROLLER<br>");
             echo isset($_SESSION["user"]);
             $ctrlName = $_POST["controller"];
             $mthdName = $_POST["method"];
@@ -37,9 +38,18 @@ class Routeur {
                 $method = $reflectionClass->getMethod($mthdName);
                 $method->invoke(NULL);
             } catch (ReflectionException $exp) {
+                echo("ERROR<br>");
+                echo($exp->getMessage());
                 // todo handle err
             }
         } else if($isConnected) {
+            echo("ROUTE_TO_MAIN_PAGE_DEFAULT<br>");
+            // <<<<<<<<<<<<<<<<<<<<<<<<<<<
+            //       TESTS FOR PLATEAU
+            PlateauVue::getHtml();
+            // >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
             // todo display main page
         }
 

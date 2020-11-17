@@ -1,5 +1,5 @@
 <?php
-require_once PATH_METIER."/Plateau.php";
+require_once PATH_METIER . "/plateau/Plateau.php";
 require_once "LigneVue.php";
 require_once PATH_VUE."/IVue.php";
 
@@ -7,6 +7,11 @@ class PlateauVue implements IVue
 {
     public static function getHtml($toDisplay=NULL)
     {
+        if(!isset($_SESSION["plateau"])) {
+            $_SESSION["plateau"] = new Plateau();
+        }
+
+
         $plateau = $_SESSION["plateau"];
         ?>
         <plateau>
@@ -17,5 +22,6 @@ class PlateauVue implements IVue
             ?>
         </plateau>
         <?php
+        ControlsVue::getHtml();
     }
 }

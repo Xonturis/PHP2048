@@ -1,6 +1,29 @@
 <div class="controls-wrapper">
-    <button class="control-up">HAUT</button>
-    <button class="control-down">BAS</button>
-    <button class="control-left">GAUCHE</button>
-    <button class="control-right">DROITE</button>
+    <form class="control-up" action="" method="post">
+        <input type="hidden" name="controller" value="PlateauControleur">
+        <input type="hidden" name="method" value="mouvement">
+        <input type="hidden" name="mouvement" value="haut">
+        <input type="submit" value="HAUT" />
+    </form>
+
+    <form class="control-down" action="" method="post">
+        <input type="hidden" name="controller" value="PlateauControleur">
+        <input type="hidden" name="method" value="mouvement">
+        <input type="hidden" name="mouvement" value="bas">
+        <input type="submit" value="BAS" />
+    </form>
+
+    <form class="control-left" action="" method="post">
+        <input type="hidden" name="controller" value="PlateauControleur">
+        <input type="hidden" name="method" value="mouvement">
+        <input type="hidden" name="mouvement" value="gauche">
+        <input type="submit" value="GAUCHE" />
+    </form>
+
+    <form class="control-right" action="" method="post">
+        <input type="hidden" name="controller" value="PlateauControleur">
+        <input type="hidden" name="method" value="mouvement">
+        <input type="hidden" name="mouvement" value="droite">
+        <input type="submit" value="DROITE" />
+    </form>
 </div>

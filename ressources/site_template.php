@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="projet.css">
     <link rel="stylesheet" type="text/css" href="connexion.css">
-
+    <link rel="stylesheet" type="text/css" href="plateau.css">
     <title>Plateau de 2048</title>
 </head>
 <body>

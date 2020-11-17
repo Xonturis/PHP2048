@@ -10,13 +10,59 @@ tuile {
     margin: 10px;
     height: 100px;
     width: 100px;
-    background: beige;
+    background: #2c64d2;
     border: solid black 1px;
 
     display: inline-flex;
     justify-content: center;
     align-items: center;
 }
+
+/*region tuile colors*/
+.tuile-0 {
+    background: #f5f5dc;
+}
+.tuile-2 {
+    background: #e5e5a5;
+}
+.tuile-4 {
+    background: #d7d777;
+}
+.tuile-8 {
+    background: #cbcb50;
+}
+.tuile-16 {
+    background: #b9b937;
+}
+.tuile-32 {
+    background: #c9846c;
+}
+.tuile-64 {
+    background: #bc674a;
+}
+.tuile-128 {
+    background: #a2563c;
+}
+.tuile-256 {
+    background: #c17976;
+}
+.tuile-512 {
+    background: #b25955;
+}
+.tuile-1024 {
+    background: #994945;
+}
+.tuile-2048 {
+    background: #70cb66;
+}
+.tuile-4096 {
+    background: #50bf43;
+}
+.tuile-8192 {
+    background: #43a337;
+}
+
+/*endregion tuile colors*/
 
 .controls-wrapper {
     display: grid;
@@ -42,4 +88,8 @@ tuile {
 .control-right {
     grid-column: 3;
     grid-row: 2;
+}
+
+[class^="control-"] > input {
+    height: 100%;
 }

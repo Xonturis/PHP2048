@@ -10,7 +10,6 @@ class ConnexionControleur{
             ob_clean();
             unset($_POST["controller"]);
             Routeur::routerRequete();
-//            header("location: localhost/2048/index.php");
         } else {
             //do something
         }

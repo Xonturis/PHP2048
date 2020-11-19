@@ -1,7 +1,10 @@
 <?php
 
 
-class ClassementVue
+class ClassementVue implements IVue
 {
+    public static function getHtml($toDisplay = NULL)
+    {
 
+    }
 }

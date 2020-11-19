@@ -7,14 +7,13 @@ class MainPageVue implements IVue
     public static function getHtml($toDisplay = NULL)
     {
         ?>
-        <div class="">
+        <div class="mainContainer">
             <?php
-
+                PlateauVue::getHtml();
+                ClassementVue::getHtml();
             ?>
         </div>
 
         <?php
-
-
     }
 }

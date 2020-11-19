@@ -3,13 +3,16 @@ require_once PATH_MODELE.'/UserDAO.php';
 
 class ConnexionControleur{
 
+
+    public static function displayConnexionPage() {
+        ConnexionVue::getHtml();
+    }
+
     public static function connexionAttempt(){
         $result = UserDAO::getUser($_POST["username"],$_POST["password"]);
         if($result != NULL){
             $result->setCurrentUser();
-            ob_clean();
-            unset($_POST["controller"]);
-            Routeur::routerRequete();
+            Routeur::redirectTo("MainPageControleur", "showPage");
         } else {
             //do something
         }

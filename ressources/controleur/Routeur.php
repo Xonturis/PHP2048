@@ -11,50 +11,87 @@ foreach (scandir(PATH_CONTROLEUR) as $filename) {
 
 class Routeur {
 
-    // Traite une requête entrante
-    public static function routerRequete() {
+    private static function startOb() {
+        ob_clean();
         ob_start();
+    }
 
+    private static  function processPageToDisplay() {
+        self::startOb();
         HeaderVue::getHtml();
+        self::callReflectiveController();
+    }
 
-        $isConnected = true;
-        var_dump($_POST);
-        if(!isset($_SESSION["user"]) && !isset($_POST["controller"])) {
-            // Router vers la connexion
-            echo("ROUTE_TO_CONNEXION<br>");
-            ConnexionVue::getHtml();
-            $isConnected = false;
-        }
+    public static function redirectTo(string $controller, string $method) {
+        $_POST["controller"] = $controller;
+        $_POST["method"] = $method;
+        self::processPageToDisplay();
+    }
 
-        $mainPage = isset($_POST["controller"]);
-        if($isConnected && $mainPage) {
-            echo("ROUTE_TO_CONTROLLER<br>");
-            echo isset($_SESSION["user"]);
-            $ctrlName = $_POST["controller"];
-            $mthdName = $_POST["method"];
-
-            try {
-                $reflectionClass = new ReflectionClass($ctrlName);
-                $method = $reflectionClass->getMethod($mthdName);
-                $method->invoke(NULL);
-            } catch (ReflectionException $exp) {
-                echo("ERROR<br>");
-                echo($exp->getMessage());
-                // todo handle err
-            }
-        } else if($isConnected) {
-            echo("ROUTE_TO_MAIN_PAGE_DEFAULT<br>");
-            // <<<<<<<<<<<<<<<<<<<<<<<<<<<
-            //       TESTS FOR PLATEAU
-            PlateauVue::getHtml();
-            // >>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-            // todo display main page
-        }
-
+    private static function displayPage() {
         FooterVue::getHtml();
         $content = ob_get_clean();
         require (HOME_SITE."/site_template.php");
+    }
+
+    // Traite une requête entrante
+    public static function routerRequete() {
+        self::applyDefaults();
+        self::processPageToDisplay();
+        self::displayPage();
+    }
+
+// todo remove after approval
+ //  region To Remove
+//    public static function routerRequete() {
+//        ob_start();
+//
+//        HeaderVue::getHtml();
+//
+//        var_dump($_POST);
+//
+//        // Default controller
+//        self::applyDefaults();
+//
+//        $ctrlName = $_POST["controller"];
+//        $mthdName = $_POST["method"];
+//
+//        try {
+//            $reflectionClass = new ReflectionClass($ctrlName);
+//            $method = $reflectionClass->getMethod($mthdName);
+//            $method->invoke(NULL);
+//        } catch (ReflectionException $exp) {
+//            echo("ERROR<br>");
+//            echo($exp->getMessage());
+//            // todo handle err
+//        }
+//
+//
+//        FooterVue::getHtml();
+//        $content = ob_get_clean();
+//        require (HOME_SITE."/site_template.php");
+//    }
+//endregion
+
+    private static function callReflectiveController() {
+        $ctrlName = $_POST["controller"];
+        $mthdName = $_POST["method"];
+
+        try {
+            $reflectionClass = new ReflectionClass($ctrlName);
+            $method = $reflectionClass->getMethod($mthdName);
+            $method->invoke(NULL);
+        } catch (ReflectionException $exp) {
+            echo("ERROR<br>");
+            echo($exp->getMessage());
+            // todo handle err
+        }
+    }
+
+    private static function applyDefaults() {
+        if(!isset($_POST["controller"])){
+            $_POST["controller"] = "MainPageControleur";
+            $_POST["method"] = "showPage";
+        }
     }
 }

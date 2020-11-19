@@ -17,7 +17,7 @@ class PlateauControleur
     const DROITE = 4;
 
     public static function mouvement() {
-        $mouvement = $_POST["mouvement"];
+        $mouvement = $_GET["mouvement"];
         if(preg_match("/(haut)|(bas)|(gauche)|(droite)/", $mouvement)){
             $plateau = $_SESSION["plateau"];
             try {

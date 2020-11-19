@@ -23,8 +23,8 @@ class Routeur {
     }
 
     public static function redirectTo(string $controller, string $method) {
-        $_POST["controller"] = $controller;
-        $_POST["method"] = $method;
+        $_GET["controller"] = $controller;
+        $_GET["method"] = $method;
         self::processPageToDisplay();
     }
 
@@ -48,13 +48,13 @@ class Routeur {
 //
 //        HeaderVue::getHtml();
 //
-//        var_dump($_POST);
+//        var_dump($_GET);
 //
 //        // Default controller
 //        self::applyDefaults();
 //
-//        $ctrlName = $_POST["controller"];
-//        $mthdName = $_POST["method"];
+//        $ctrlName = $_GET["controller"];
+//        $mthdName = $_GET["method"];
 //
 //        try {
 //            $reflectionClass = new ReflectionClass($ctrlName);
@@ -74,8 +74,8 @@ class Routeur {
 //endregion
 
     private static function callReflectiveController() {
-        $ctrlName = $_POST["controller"];
-        $mthdName = $_POST["method"];
+        $ctrlName = $_GET["controller"];
+        $mthdName = $_GET["method"];
 
         try {
             $reflectionClass = new ReflectionClass($ctrlName);
@@ -89,9 +89,9 @@ class Routeur {
     }
 
     private static function applyDefaults() {
-        if(!isset($_POST["controller"])){
-            $_POST["controller"] = "MainPageControleur";
-            $_POST["method"] = "showPage";
+        if(!isset($_GET["controller"])){
+            $_GET["controller"] = "MainPageControleur";
+            $_GET["method"] = "showPage";
         }
     }
 }

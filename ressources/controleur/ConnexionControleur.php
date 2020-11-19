@@ -9,7 +9,7 @@ class ConnexionControleur{
     }
 
     public static function connexionAttempt(){
-        $result = UserDAO::getUser($_POST["username"],$_POST["password"]);
+        $result = UserDAO::getUser($_GET["username"],$_GET["password"]);
         if($result != NULL){
             $result->setCurrentUser();
             Routeur::redirectTo("MainPageControleur", "showPage");

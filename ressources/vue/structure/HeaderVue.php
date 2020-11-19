@@ -10,10 +10,14 @@ class HeaderVue implements IVue
             $userName = $_SESSION["user"]->getPseudo();
 
         ?>
-        <div class="header">
-            <div class="title">2048, LE JEU</div>
-            <div class="user"><?=$userName?></div>
-        </div>
+        <nav class="header navbar navbar-light bg-light">
+            <span class="title navbar-brand">2048, LE JEU</span>
+            <div>
+                <p>user</p>
+                <a>disconnect</a>
+            </div>
+
+        </nav>
         <?php
     }
 }

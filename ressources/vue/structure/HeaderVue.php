@@ -12,11 +12,10 @@ class HeaderVue implements IVue
         ?>
         <nav class="header navbar navbar-light bg-light">
             <span class="title navbar-brand">2048, LE JEU</span>
-            <div>
-                <p>user</p>
-                <a>disconnect</a>
+            <div class="navItemContainer">
+                <p id="userName"> test : <?php{echo $userName;}?> </p>
+                <button id="disconnectButton" type="button" class="btn btn-warning">Déconnexion</button>
             </div>
-
         </nav>
         <?php
     }

@@ -1,27 +1,31 @@
 <?php
 require_once PATH_METIER . "/plateau/Plateau.php";
 require_once "LigneVue.php";
-require_once PATH_VUE."/IVue.php";
+require_once PATH_VUE . "/IVue.php";
 
 class PlateauVue implements IVue
 {
-    public static function getHtml($toDisplay=NULL)
+    public static function getHtml($toDisplay = NULL)
     {
-        if(!isset($_SESSION["plateau"])) {
+        if (!isset($_SESSION["plateau"])) {
             $_SESSION["plateau"] = new Plateau();
         }
 
 
         $plateau = $_SESSION["plateau"];
         ?>
-        <plateau>
+        <div class="Game">
+            <plateau>
+                <?php
+                foreach ($plateau->getLignes() as $ligne) {
+                    LigneVue::getHtml($ligne);
+                }
+                ?>
+            </plateau>
             <?php
-            foreach ($plateau->getLignes() as $ligne){
-                LigneVue::getHtml($ligne);
-            }
+            ControlsVue::getHtml();
             ?>
-        </plateau>
+        </div>
         <?php
-        ControlsVue::getHtml();
     }
 }

@@ -10,7 +10,7 @@ class LigneVue implements IVue
         ?>
         <ligne>
             <?php
-            foreach ($ligne->getTuiles() as $case){
+            foreach ($ligne as $case){
                 TuileVue::getHtml($case);
             }
             ?>

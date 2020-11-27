@@ -7,17 +7,11 @@ class PlateauVue implements IVue
 {
     public static function getHtml($toDisplay = NULL)
     {
-        if (!isset($_SESSION["plateau"])) {
-            $_SESSION["plateau"] = new Plateau();
-        }
-
-
-        $plateau = $_SESSION["plateau"];
         ?>
         <div class="Game">
             <plateau>
                 <?php
-                foreach ($plateau->getLignes() as $ligne) {
+                foreach ($toDisplay as $ligne) {
                     LigneVue::getHtml($ligne);
                 }
                 ?>

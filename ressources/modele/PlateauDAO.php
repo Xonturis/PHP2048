@@ -9,14 +9,14 @@ class PlateauDAO
         $serialized = serialize($plateau);
         $pseudo = $_SESSION["user"]->getPseudo();
 
-        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('REPLACE INTO PARTIES_EN_COURS(pseudo, partie_blob) VALUES (:pseudo, :partie_blob);');;
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('REPLACE INTO PARTIES_EN_COURS(pseudo, partie_blob) VALUES(:pseudo, :partie_blob);');;
         $statement->bindParam(':pseudo', $pseudo);
         $statement->bindParam(':partie_blob', $serialized);
         $statement->execute();
     }
 
     public static function getOrCreateCurrentPlateau(User $user) : Plateau {
-        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('SELECT partie_blob FROM PARTIES_EN_COUR WHERE pseudo = :pseudo;');
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('SELECT partie_blob FROM PARTIES_EN_COURS WHERE pseudo = :pseudo;');
         $pseudo = $user->getPseudo();
         $statement->bindParam(':pseudo', $pseudo);
         $statement->execute();

@@ -5,7 +5,7 @@ class ConnexionVue implements IVue
     public static function getHtml($toDisplay=NULL)
     {
         ?>
-        <form action="" method="GET">
+        <form action="" method="GET" class="connexionForm">
             <div class="container">
                 <label for="uname"><b>Username</b></label>
                 <input type="text" placeholder="Enter Username" name="username" required>

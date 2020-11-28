@@ -22,4 +22,18 @@ class UserDAO
         return NULL; // todo bad password
     }
 
+    public static function addUser($pseudo,$password) : ?bool{
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('INSERT INTO JOUEURS values (:pseudo,:password);');;
+        $statement->bindParam(':pseudo', $pseudo);
+        $hashPassword = password_hash($password,PASSWORD_DEFAULT);
+        $statement->bindParam(':password', $hashPassword);
+        try {
+            $statement->execute();
+        }catch (PDOException $e){
+            //do something
+        }
+        return NULL;
+        
+    }
+
 }

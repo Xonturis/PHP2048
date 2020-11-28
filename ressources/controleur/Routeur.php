@@ -18,7 +18,12 @@ class Routeur {
 
     private static  function processPageToDisplay() {
         self::startOb();
-        HeaderVue::getHtml();
+        if(session_status() == PHP_SESSION_ACTIVE && isset($_SESSION["user"])){
+            HeaderVueConnected::getHtml();
+        }
+        else{
+            HeaderVue::getHtml();
+        }
         self::callReflectiveController();
     }
 

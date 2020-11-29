@@ -10,7 +10,7 @@ class MainPageVue implements IVue
         <div class="mainGameContainer">
             <?php
                 PlateauControleur::afficherPlateau();
-                ClassementVue::getHtml();
+                ClassementVue::getHtml($toDisplay);
             ?>
         </div>
 

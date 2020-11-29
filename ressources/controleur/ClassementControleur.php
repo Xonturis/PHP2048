@@ -5,13 +5,9 @@ class ClassementControleur
 {
     public static $classement;
 
-    public static function getClassement() : ?Classement
+    public static function getClassement($nb) : ?Classement
     {
-        if(self::$classement == null){
-            self::$classement = new Classement();
-            return null;
-        }
-        return self::$classement;
+        return ClassementDao::getElements($nb);
     }
 
     public static function addScore(){

@@ -10,6 +10,6 @@ class MainPageControleur
             Routeur::redirectTo("ConnexionControleur", "displayConnexionPage");
             return;
         }
-        MainPageVue::getHtml();
+        MainPageVue::getHtml(ClassementControleur::getClassement(30));
     }
 }

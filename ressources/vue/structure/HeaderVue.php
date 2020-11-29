@@ -13,8 +13,8 @@ class HeaderVue implements IVue
             <div class="navItemContainer">
                 <form method="GET">
                     <button id="connectButton" type="submit" class="btn btn-warning">Se connecter</button>
-                    <input type="hidden" name="controller" value="ConnexionControleur">
-                    <input type="hidden" name="method" value="connexionAttempt">
+                    <input type="hidden" name="controller" value="MainPageControleur">
+                    <input type="hidden" name="method" value="showPage">
                 </form>
                 <form method="GET">
                     <button id="signUpButton" type="submit" class="btn btn-warning">S'inscrire</button>

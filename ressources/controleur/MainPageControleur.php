@@ -11,6 +11,9 @@ class MainPageControleur
             Routeur::redirectTo("ConnexionControleur", "displayConnexionPage");
             return;
         }
-        MainPageVue::getHtml(ClassementControleur::getClassement(40));
+        MainPageVue::openMainGameContainer();
+        PlateauControleur::afficherPlateau();
+        ClassementVue::getHtml(ClassementControleur::getClassement(30));
+        MainPageVue::closeMainGameContainer();
     }
 }

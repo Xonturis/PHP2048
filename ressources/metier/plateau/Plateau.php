@@ -150,8 +150,7 @@ class Plateau
             }
         }
 
-        echo "C PA OK";
-        return true;
+        return false;
     }
 
     public function unflagMergeTuiles() {

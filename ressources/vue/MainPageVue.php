@@ -17,8 +17,6 @@ class MainPageVue implements IVue
         <?php
     }
 
-
-
     public static function getHtml($toDisplay = NULL)
     {
     }

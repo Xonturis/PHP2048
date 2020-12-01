@@ -118,7 +118,8 @@ class Plateau
     }
     // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-    private function tuilesZero() : array {
+    private function tuilesZero() : int
+    {
         $zeroScore = array();
         foreach ($this->tuiles as $ligne) {
             foreach ($ligne as $tuile) {
@@ -127,29 +128,33 @@ class Plateau
                 }
             }
         }
-        return $zeroScore;
-    }
-
-    private function nbDeTuileZero() :int{
-        $zeroScore = $this->tuilesZero();
         return count($zeroScore);
     }
 
     public function perdu() : bool {
-        $count = $this->nbDeTuileZero();
-
-        if($count == 0) {
-            return true;
+        if($this->tuilesZero() == 0) {
+            for ($x = 0; $x < $this->size; $x++) {
+                for ($y = 0; $y < $this->size; $y++) {
+                    $val = $this->getTuile($x, $y)->getScore();
+                    $valRight = $this->getTuile($x, $y + 1);
+                    if ($valRight != null && $valRight == $val) {
+                        return false;
+                    }
+                    $valDown = $this->getTuile($x + 1, $y);
+                    if ($valDown != null && $valDown == $val) {
+                        return false;
+                    }
+                }
+            }
         }
-        return false;
+
+        return true;
     }
 
     public function unflagMergeTuiles() {
         foreach ($this->tuiles as $ligne) {
             foreach ($ligne as $tuile) {
-//                if ($tuile->getScore() == 0) {
-                    $tuile->unflagMerge();
-//                }
+                $tuile->unflagMerge();
             }
         }
     }

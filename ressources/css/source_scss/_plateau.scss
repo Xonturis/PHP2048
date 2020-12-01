@@ -1,5 +1,5 @@
 $border_size: 4px;
-$alpha: 0.4;
+$alpha: 0.8;
 
 plateau {
     margin: 10px;
@@ -13,129 +13,82 @@ tuile {
     margin: 10px;
     height: 100px;
     width: 100px;
-    background: #2c64d2;
     border: solid black 1px;
+    color: white;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: white;
 
     display: inline-flex;
     justify-content: center;
     align-items: center;
 }
 
+tuile > p{
+    font-size: 40px;
+    align-self: center;
+    margin: 0;
+}
+
 /*region tuile colors*/
 .tuile-0 {
 
-    color: black;
     background-color: rgba(246,205,5,$alpha);
     border: solid $border_size #F9CD05;
 }
 .tuile-2 {
-    color: black;
     background-color: rgba(219,159,4,$alpha);
     border: solid $border_size #E3A407;
 }
 .tuile-4 {
-    color: black;
     background-color: rgba(243,156,18,$alpha);
     border: solid $border_size #FD9E08;
 }
 .tuile-8 {
-    color: black;
     background-color: rgba(219,109,4,$alpha);
     border: solid $border_size #E67205;
 }
 .tuile-16 {
-    color: black;
     background-color: rgba(249,88,5,$alpha);
     border: solid $border_size #FE5A05;
 }
 .tuile-32 {
-    color: black;
     background-color: rgba(227,48,7,$alpha);
     border: solid $border_size #E83107;
 }
 .tuile-64 {
-    color: black;
     background-color: rgba(253,18,8,$alpha);
     border: solid $border_size #FF1208;
 }
 .tuile-128 {
-    color: black;
     background-color: rgba(230,5,91,$alpha);
     border: solid $border_size #E8055C;
 }
 .tuile-256 {
-    color: black;
     background-color: rgba(254,5,225,$alpha);
     border: solid $border_size #FF05E2;
 }
 .tuile-512 {
-    color: black;
     background-color: rgba(185,7,232,$alpha);
     border: solid $border_size #B907E8;
 }
 .tuile-1024 {
-    color: black;
     background-color: rgba(136,8,255,$alpha);
     border: solid $border_size #8808FF;
 }
 .tuile-2048 {
-    color: black;
     background-color: rgba(60,5,232,$alpha);
     border: solid $border_size #3C05E8;
 }
 .tuile-4096 {
-    color: black;
     background-color: rgba(5,12,255,$alpha);
     border: solid $border_size #050CFF;
 }
 .tuile-8192 {
-    color: black;
     background-color: rgba(7,74,232,$alpha);
     border: solid $border_size #074AE8;
 }
 
-//.tuile-0 {
-//    background: #f5f5dc;
-//}
-//.tuile-2 {
-//    background: #e5e5a5;
-//}
-//.tuile-4 {
-//    background: #d7d777;
-//}
-//.tuile-8 {
-//    background: #cbcb50;
-//}
-//.tuile-16 {
-//    background: #b9b937;
-//}
-//.tuile-32 {
-//    background: #c9846c;
-//}
-//.tuile-64 {
-//    background: #bc674a;
-//}
-//.tuile-128 {
-//    background: #a2563c;
-//}
-//.tuile-256 {
-//    background: #c17976;
-//}
-//.tuile-512 {
-//    background: #b25955;
-//}
-//.tuile-1024 {
-//    background: #994945;
-//}
-//.tuile-2048 {
-//    background: #70cb66;
-//}
-//.tuile-4096 {
-//    background: #50bf43;
-//}
-//.tuile-8192 {
-//    background: #43a337;
-//}
+
 
 /*endregion tuile colors*/
 

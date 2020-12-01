@@ -118,7 +118,7 @@ class Plateau
     }
     // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-    private function tuilesZero() : int
+    private function tuilesZero() : array
     {
         $zeroScore = array();
         foreach ($this->tuiles as $ligne) {
@@ -128,26 +128,29 @@ class Plateau
                 }
             }
         }
-        return count($zeroScore);
+        return $zeroScore;
     }
 
     public function perdu() : bool {
-        if($this->tuilesZero() == 0) {
+        if(count($this->tuilesZero()) == 0) {
             for ($x = 0; $x < $this->size; $x++) {
                 for ($y = 0; $y < $this->size; $y++) {
                     $val = $this->getTuile($x, $y)->getScore();
-                    $valRight = $this->getTuile($x, $y + 1);
+                    $valRight = $this->getTuile($x, $y + 1)->getScore();
                     if ($valRight != null && $valRight == $val) {
+                        echo "C OK";
                         return false;
                     }
                     $valDown = $this->getTuile($x + 1, $y);
                     if ($valDown != null && $valDown == $val) {
+                        echo "C OK";
                         return false;
                     }
                 }
             }
         }
 
+        echo "C PA OK";
         return true;
     }
 
@@ -159,6 +162,9 @@ class Plateau
         }
     }
 
+    /**
+     * Place une tuile au hasard dans le plateau
+     */
     public function aleatTuile() {
         $zeroScore = $this->tuilesZero();
         $count = count($zeroScore);
@@ -168,12 +174,16 @@ class Plateau
         }
 
         try {
-            $zeroScore[random_int(0, $count - 1)]->setScore(2);
+            $score = rand(1,100)<=10?4:2;
+            $zeroScore[random_int(0, $count - 1)]->setScore($score);
         } catch (Exception $e) {
             $this->aleatTuile();
         }
     }
 
+    /**
+     * Reset le plateau
+     */
     public function reset() {
         foreach ($this->tuiles as $ligne) {
             foreach ($ligne as $tuile) {
@@ -185,6 +195,9 @@ class Plateau
         $this->aleatTuile();
     }
 
+    /**
+     * @return int somme des tuiles
+     */
     public function getScore() {
         $score = 0;
         foreach ($this->tuiles as $ligne) {
@@ -195,6 +208,9 @@ class Plateau
         return $score;
     }
 
+    /**
+     * @return int la tuile ayant le plus gros score
+     */
     public function getMaxTuile() {
         $max = 0;
         foreach ($this->tuiles as $ligne) {
@@ -207,6 +223,10 @@ class Plateau
         return $max;
     }
 
+    /**
+     * Génère la grille représentant l'état de la partie
+     * @return array représentant l'état de la partie
+     */
     public function getIntegerGrid() {
         $grid = array();
 

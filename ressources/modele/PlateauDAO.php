@@ -5,9 +5,9 @@ require_once PATH_METIER."/plateau/Plateau.php";
 class PlateauDAO
 {
 
-    public static function savePlateauToDB(Plateau $plateau) {
+    public static function savePlateauToDB(Plateau $plateau, User $user) {
         $serialized = serialize($plateau);
-        $pseudo = $_SESSION["user"]->getPseudo();
+        $pseudo = $user->getPseudo();
 
         $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('REPLACE INTO PARTIES_EN_COURS(pseudo, partie_blob) VALUES(:pseudo, :partie_blob);');;
         $statement->bindParam(':pseudo', $pseudo);

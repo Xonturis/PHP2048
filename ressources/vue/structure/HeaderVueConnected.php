@@ -5,9 +5,7 @@ class HeaderVueConnected implements IVue
 {
     public static function getHtml($toDisplay=NULL)
     {
-        $userName = "Non Connecté";
-        if(session_status() == PHP_SESSION_ACTIVE && isset($_SESSION["user"]))
-            $userName = $_SESSION["user"]->getPseudo();
+        $userName = $toDisplay->getPseudo();
 
         ?>
         <nav class="header navbar navbar-light bg-light">

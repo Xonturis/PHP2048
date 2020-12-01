@@ -22,10 +22,4 @@ class User
         return $this->pseudo;
     }
 
-    public function setCurrentUser() {
-        if(session_status() == PHP_SESSION_ACTIVE) {
-            $_SESSION["user"] = $this;
-        }
-    }
-
 }

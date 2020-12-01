@@ -40,7 +40,7 @@ class PlateauControleur
         if(self::$plateau == null)
             self::$plateau = PlateauDAO::getOrCreateCurrentPlateau($_SESSION["user"]);
         PlateauVue::getHtml(self::$plateau->getIntegerGrid());
-        PlateauDAO::savePlateauToDB(self::$plateau);
+        PlateauDAO::savePlateauToDB(self::$plateau, $_SESSION["user"]);
     }
 
     private static function afficherFin(Plateau $plateau){

@@ -19,7 +19,7 @@ class Routeur {
     private static  function processPageToDisplay() {
         self::startOb();
         if(session_status() == PHP_SESSION_ACTIVE && isset($_SESSION["user"])){
-            HeaderVueConnected::getHtml();
+            HeaderVueConnected::getHtml($_SESSION["user"]);
         }
         else{
             HeaderVue::getHtml();

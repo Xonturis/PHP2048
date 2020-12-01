@@ -147,9 +147,9 @@ class Plateau
     public function unflagMergeTuiles() {
         foreach ($this->tuiles as $ligne) {
             foreach ($ligne as $tuile) {
-                if ($tuile->getScore() == 0) {
+//                if ($tuile->getScore() == 0) {
                     $tuile->unflagMerge();
-                }
+//                }
             }
         }
     }

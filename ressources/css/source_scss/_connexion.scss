@@ -7,15 +7,16 @@
 }
 
 .container{
-    width: 50%;
+    width: 20%;
+    height: 30%;
     display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    border: black 1px solid;
     border-radius: 10px;
+    border: solid 1px #f39c12;
     padding: 2%;
-    background-color: white;
+    background-color: white !important;
 }
 
 .container > *{
@@ -29,4 +30,18 @@
 #title{
     text-align: center;
 }
+
+label{
+    color: #f39c12;
+}
+
+h3{
+    color: #f39c12;
+}
+
+button{
+    background-color: white !important;
+    color: #f39c12 !important;
+}
+
 

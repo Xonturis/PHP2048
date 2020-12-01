@@ -1,0 +1,31 @@
+.mainContainer > .header {
+  background-color: #f39c12 !important;
+}
+
+.user {
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  font-size: 30px;
+  color: #ecf0f1;
+}
+
+.title {
+  color: white !important;
+}
+
+.navItemContainer{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.navItemContainer > form >  button{
+  background-color: white !important;
+  color: #f39c12 !important;
+  margin-left: 10px;
+}
+
+#userName{
+  color: white !important;
+}

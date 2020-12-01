@@ -1,0 +1,317 @@
+.mainGameContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.Game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.connexionForm {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 20%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+  border: solid 1px #f39c12;
+  padding: 2%;
+  background-color: white !important;
+}
+
+.container > * {
+  margin-top: 1%;
+}
+
+.container > label {
+  align-self: center;
+}
+
+#title {
+  text-align: center;
+}
+
+label {
+  color: #f39c12;
+}
+
+h3 {
+  color: #f39c12;
+}
+
+button {
+  background-color: white !important;
+  color: #f39c12 !important;
+}
+
+plateau {
+  margin: 10px;
+}
+
+ligne {
+  display: block;
+}
+
+tuile {
+  margin: 10px;
+  height: 100px;
+  width: 100px;
+  background: #2c64d2;
+  border: solid black 1px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*region tuile colors*/
+.tuile-0 {
+  color: black;
+  background-color: white;
+  border: solid 4px #F9CD05;
+}
+
+.tuile-2 {
+  color: black;
+  background-color: white;
+  border: solid $border_size #E3A407;
+}
+
+.tuile-4 {
+  color: black;
+  background-color: white;
+  border: solid $border_size #FD9E08;
+}
+
+.tuile-8 {
+  color: black;
+  background-color: white;
+  border: solid $border_size #E67205;
+}
+
+.tuile-16 {
+  color: black;
+  background-color: white;
+  border: solid $border_size #FE5A05;
+}
+
+.tuile-32 {
+  color: black;
+  background-color: white;
+  border: solid $border_size #E83107;
+}
+
+.tuile-64 {
+  color: black;
+  background-color: white;
+  border: solid $border_size #FF1208;
+}
+
+.tuile-128 {
+  color: black;
+  background-color: white;
+  border: solid $border_size #E8055C;
+}
+
+.tuile-256 {
+  color: black;
+  background-color: white;
+  border: solid $border_size #FF05E2;
+}
+
+.tuile-512 {
+  color: black;
+  background-color: white;
+  border: solid $border_size #B907E8;
+}
+
+.tuile-1024 {
+  color: black;
+  background-color: white;
+  border: solid $border_size #8808FF;
+}
+
+.tuile-2048 {
+  color: black;
+  background-color: white;
+  border: solid $border_size #3C05E8;
+}
+
+.tuile-4096 {
+  color: black;
+  background-color: white;
+  border: solid $border_size #050CFF;
+}
+
+.tuile-8192 {
+  color: black;
+  background-color: white;
+  border: solid $border_size #074AE8;
+}
+
+/*endregion tuile colors*/
+.controls-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  height: 200px;
+  width: 300px;
+}
+
+.control-up {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.control-down {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.control-left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.control-right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+[class^=control-] > input {
+  height: 100%;
+}
+
+.tableContainer {
+  border: black 1px solid;
+  border-radius: 10px;
+  background-color: white;
+  height: 100%;
+  width: 50%;
+  overflow: scroll;
+}
+
+.controls-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  height: 200px;
+  width: 260px;
+}
+
+.controls-wrapper > form > input {
+  color: #f39c12 !important;
+  background-color: white !important;
+  width: 80px;
+  height: 80px;
+}
+
+.control-up {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.control-down {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.control-left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.control-right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.footer {
+  position: relative;
+  background-color: #2c3e50 !important;
+}
+
+.footerItemContainer {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  font-size: 1rem;
+  align-items: center;
+}
+
+.mainContainer > .header {
+  background-color: #f39c12 !important;
+}
+
+.user {
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  font-size: 30px;
+  color: #ecf0f1;
+}
+
+.title {
+  color: white !important;
+}
+
+.navItemContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.navItemContainer > form > button {
+  background-color: white !important;
+  color: #f39c12 !important;
+  margin-left: 10px;
+}
+
+#userName {
+  color: white !important;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #ecf0f1;
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+.mainContainer {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/*# sourceMappingURL=projet.css.map */

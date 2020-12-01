@@ -1,0 +1,169 @@
+$border_size: 4px;
+
+plateau {
+    margin: 10px;
+}
+
+ligne {
+    display: block;
+}
+
+tuile {
+    margin: 10px;
+    height: 100px;
+    width: 100px;
+    background: #2c64d2;
+    border: solid black 1px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*region tuile colors*/
+.tuile-0 {
+
+    color: black;
+    background-color: white;
+    border: solid $border_size #F9CD05;
+}
+.tuile-2 {
+    color: black;
+    background-color: white;
+    border: solid $border_size #E3A407;
+}
+.tuile-4 {
+    color: black;
+    background-color: white;
+    border: solid $border_size #FD9E08;
+}
+.tuile-8 {
+    color: black;
+    background-color: white;
+    border: solid $border_size #E67205;
+}
+.tuile-16 {
+    color: black;
+    background-color: white;
+    border: solid $border_size #FE5A05;
+}
+.tuile-32 {
+    color: black;
+    background-color: white;
+    border: solid $border_size #E83107;
+}
+.tuile-64 {
+    color: black;
+    background-color: white;
+    border: solid $border_size #FF1208;
+}
+.tuile-128 {
+    color: black;
+    background-color: white;
+    border: solid $border_size #E8055C;
+}
+.tuile-256 {
+    color: black;
+    background-color: white;
+    border: solid $border_size #FF05E2;
+}
+.tuile-512 {
+    color: black;
+    background-color: white;
+    border: solid $border_size #B907E8;
+}
+.tuile-1024 {
+    color: black;
+    background-color: white;
+    border: solid $border_size #8808FF;
+}
+.tuile-2048 {
+    color: black;
+    background-color: white;
+    border: solid $border_size #3C05E8;
+}
+.tuile-4096 {
+    color: black;
+    background-color: white;
+    border: solid $border_size #050CFF;
+}
+.tuile-8192 {
+    color: black;
+    background-color: white;
+    border: solid $border_size #074AE8;
+}
+
+//.tuile-0 {
+//    background: #f5f5dc;
+//}
+//.tuile-2 {
+//    background: #e5e5a5;
+//}
+//.tuile-4 {
+//    background: #d7d777;
+//}
+//.tuile-8 {
+//    background: #cbcb50;
+//}
+//.tuile-16 {
+//    background: #b9b937;
+//}
+//.tuile-32 {
+//    background: #c9846c;
+//}
+//.tuile-64 {
+//    background: #bc674a;
+//}
+//.tuile-128 {
+//    background: #a2563c;
+//}
+//.tuile-256 {
+//    background: #c17976;
+//}
+//.tuile-512 {
+//    background: #b25955;
+//}
+//.tuile-1024 {
+//    background: #994945;
+//}
+//.tuile-2048 {
+//    background: #70cb66;
+//}
+//.tuile-4096 {
+//    background: #50bf43;
+//}
+//.tuile-8192 {
+//    background: #43a337;
+//}
+
+/*endregion tuile colors*/
+
+.controls-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    height: 200px;
+    width: 300px;
+}
+
+.control-up {
+    grid-column: 2;
+    grid-row: 1;
+}
+.control-down {
+    grid-column: 2;
+    grid-row: 2;
+}
+.control-left {
+    grid-column: 1;
+    grid-row: 2;
+}
+.control-right {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+[class^="control-"] > input {
+    height: 100%;
+}

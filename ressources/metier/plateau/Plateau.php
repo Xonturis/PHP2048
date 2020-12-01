@@ -37,32 +37,37 @@ class Plateau
 
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     //todo                          TO BE OPTIMIZED
-    public function getRightOrder(Direction $direction) {
-        /*
-         * Pour éviter d'avoir un switch ou 4 méthodes comme avant,
-         * on essaye de parcourir de façon logique par rapport au
-         * mouvement voulu par le joueur :
-         *      Essayer de partir de là où on va en gros
-         *
-         * Exemple avec le mouvement HAUT (sur deux colonnes) :
-         * On va essayer les deux façons traitement bas vers haut
-         * et haut vers bas :
-         * BH = traitement de Bas en Haut
-         * HB = traitement de Haut en Bas
-         *  * ORDRE *             * DÉPART *           * ARRIVÉE *
-         *    BH  HB                BH  HB               BH  HB
-         *  *---*---*             *---*---*            *---*---*
-         *  | 4 | 1 |             | 2 | 2 |            | 4 | 4 |
-         *  *---*---*             *---*---*            *---*---*
-         *  | 3 | 2 |             | 2 | 2 |            | 0 | 4 |
-         *  *---*---*    ---->    *---*---*    ---->   *---*---*
-         *  | 2 | 3 |             | 2 | 2 |            | 4 | 0 |
-         *  *---*---*             *---*---*            *---*---*
-         *  | 1 | 4 |             | 2 | 2 |            | 0 | 0 |
-         *  *---*---*             *---*---*            *---*---*
-         *                                              KO   OK
-         */
 
+    /**
+     * Trouve l'ordre des tuiles à parcourir pour éviter d'avoir à faire 4 méthodes ou un switch
+     *
+     * Pour éviter d'avoir un switch ou 4 méthodes comme avant,
+     * on essaye de parcourir de façon logique par rapport au
+     * mouvement voulu par le joueur :
+     *      Essayer de partir de là où on va en gros
+     *
+     * Exemple avec le mouvement HAUT (sur deux colonnes) :
+     * On va essayer les deux façons traitement bas vers haut
+     * et haut vers bas :
+     * BH = traitement de Bas en Haut
+     * HB = traitement de Haut en Bas
+     *  * ORDRE *             * DÉPART *           * ARRIVÉE *
+     *    BH  HB                BH  HB               BH  HB
+     *  *---*---*             *---*---*            *---*---*
+     *  | 4 | 1 |             | 2 | 2 |            | 4 | 4 |
+     *  *---*---*             *---*---*            *---*---*
+     *  | 3 | 2 |             | 2 | 2 |            | 0 | 4 |
+     *  *---*---*    ---->    *---*---*    ---->   *---*---*
+     *  | 2 | 3 |             | 2 | 2 |            | 4 | 0 |
+     *  *---*---*             *---*---*            *---*---*
+     *  | 1 | 4 |             | 2 | 2 |            | 0 | 0 |
+     *  *---*---*             *---*---*            *---*---*
+     *                                              KO   OK
+     *
+     * @param Direction $direction dans quelle direction
+     * @return array[] l'ordre
+     */
+    public function getRightOrder(Direction $direction) {
         $orderX = array();
         $orderY = array();
 
@@ -77,12 +82,22 @@ class Plateau
         return array("x" => $orderX, "y" => $orderY);
     }
 
+    /**
+     * 
+     * @param int $x
+     * @param int $y
+     * @return Tuile|null
+     */
     public function getTuile(int $x, int $y) :?Tuile {
         if($x < 0 || $x >= $this->size || $y < 0 || $y >= $this->size)
             return null;
         return $this->tuiles[$x][$y];
     }
 
+    /**
+     * Effectue un mouvement
+     * @param int $direction la direction
+     */
     public function move(int $direction) {
         $direction = new Direction($direction);
         $orders = $this->getRightOrder($direction);
@@ -112,12 +127,20 @@ class Plateau
 
     }
 
+    /**
+     * Déplace from vers to en effectuant le test pour éviter de déplacer une tuile vers elle même
+     * @param Tuile $from depuis quelle tuile
+     * @param Tuile $to vers quelle tuile
+     */
     private function moveTuileTo(Tuile $from, Tuile $to) {
         if($from !== $to)
             $to->replaceWith($from);
     }
     // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+    /**
+     * @return array des tuiles ayant comme score = 0
+     */
     private function tuilesZero() : array
     {
         $zeroScore = array();
@@ -131,6 +154,9 @@ class Plateau
         return $zeroScore;
     }
 
+    /**
+     * @return bool true si la game est perdu false sinon
+     */
     public function perdu() : bool {
         if(count($this->tuilesZero()) == 0) {
             for ($x = 0; $x < $this->size; $x++) {
@@ -153,6 +179,9 @@ class Plateau
         return false;
     }
 
+    /**
+     * Enlève le flag qui indique que la tuile a été "mergé" sur toutes les tuiles
+     */
     public function unflagMergeTuiles() {
         foreach ($this->tuiles as $ligne) {
             foreach ($ligne as $tuile) {

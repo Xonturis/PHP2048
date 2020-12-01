@@ -4,6 +4,9 @@ require_once PATH_VUE."/plateau/PlateauVue.php";
 require_once PATH_VUE."/plateau/LigneVue.php";
 require_once PATH_VUE."/plateau/TuileVue.php";
 
+require_once PATH_VUE."/jeu/DefaiteVue.php";
+require_once PATH_VUE."/jeu/VictoireVue.php";
+
 require_once PATH_METIER."/plateau/Plateau.php";
 require_once PATH_METIER."/plateau/Ligne.php";
 require_once PATH_METIER."/plateau/Tuile.php";
@@ -13,38 +16,31 @@ require_once PATH_MODELE."/PlateauDAO.php";
 class PlateauControleur
 {
 
-    const HAUT = 1;
-    const BAS = 2;
-    const GAUCHE = 3;
-    const DROITE = 4;
+    private static $plateau;
 
     public static function mouvement() {
         $mouvement = $_GET["mouvement"];
         if(preg_match("/(haut)|(bas)|(gauche)|(droite)/", $mouvement)){
             $direction = array_search($mouvement, array("haut", "bas", "gauche", "droite"));
-            $plateau = PlateauDAO::getOrCreateCurrentPlateau($_SESSION["user"]);
+            self::$plateau = PlateauDAO::getOrCreateCurrentPlateau($_SESSION["user"]);
 
-            $plateau->unflagMergeTuiles();
-            $plateau->move($direction);
-            $plateau->aleatTuile();
+            self::$plateau->unflagMergeTuiles();
+            self::$plateau->move($direction);
+            self::$plateau->aleatTuile();
 
-            $start = time();
-            PlateauDAO::savePlateauToDB($plateau);
-            $end = time();
-            $total = $end-$start;
-            echo $total;
-            if($plateau->perdu()) {
-                self::afficherFin($plateau);
+            if(self::$plateau->perdu()) {
+                self::afficherFin(self::$plateau);
             }else {
-                self::afficherPlateau($plateau);
+                MainPageControleur::showPage();
             }
         }
     }
 
-    public static function afficherPlateau(Plateau $plateau = NULL) {
-        if($plateau == null)
-            $plateau = PlateauDAO::getOrCreateCurrentPlateau($_SESSION["user"]);
-        PlateauVue::getHtml($plateau->getIntegerGrid());
+    public static function afficherPlateau() {
+        if(self::$plateau == null)
+            self::$plateau = PlateauDAO::getOrCreateCurrentPlateau($_SESSION["user"]);
+        PlateauVue::getHtml(self::$plateau->getIntegerGrid());
+        PlateauDAO::savePlateauToDB(self::$plateau);
     }
 
     private static function afficherFin(Plateau $plateau){
@@ -53,6 +49,6 @@ class PlateauControleur
         } else {
             DefaiteVue::getHtml(array("maxTuile" => $plateau->getMaxTuile(), "score" => $plateau->getScore()));
         }
-        PlateauVue::getHtml($plateau->getIntegerGrid());
+        MainPageControleur::showPage();
     }
 }

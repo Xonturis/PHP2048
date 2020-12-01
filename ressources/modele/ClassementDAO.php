@@ -13,7 +13,5 @@ class ClassementDao{
             $classment->addScore(new Score($value["pseudo"],$value["score"]));
         }
         return $classment;
-
-
     }
 }

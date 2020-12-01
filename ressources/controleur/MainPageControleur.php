@@ -1,6 +1,7 @@
 <?php
 
 require_once PATH_VUE."/MainPageVue.php";
+require_once PATH_VUE."/classement/ClassementVue.php";
 
 
 class MainPageControleur
@@ -10,6 +11,10 @@ class MainPageControleur
             Routeur::redirectTo("ConnexionControleur", "displayConnexionPage");
             return;
         }
-        MainPageVue::getHtml(ClassementControleur::getClassement(30));
+
+        MainPageVue::openMainGameContainer();
+        PlateauControleur::afficherPlateau();
+        ClassementVue::getHtml(ClassementControleur::getClassement(30));
+        MainPageVue::closeMainGameContainer();
     }
 }

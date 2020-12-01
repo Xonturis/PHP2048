@@ -4,16 +4,22 @@ require_once PATH_VUE . "/classement/ClassementVue.php";
 
 class MainPageVue implements IVue
 {
-    public static function getHtml($toDisplay = NULL)
-    {
+
+    public static function openMainGameContainer() {
         ?>
         <div class="mainGameContainer">
-            <?php
-                PlateauControleur::afficherPlateau();
-                ClassementVue::getHtml($toDisplay);
-            ?>
-        </div>
-
         <?php
+    }
+
+    public static function closeMainGameContainer() {
+        ?>
+        </div>
+        <?php
+    }
+
+
+
+    public static function getHtml($toDisplay = NULL)
+    {
     }
 }

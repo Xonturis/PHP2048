@@ -1,0 +1,32 @@
+@import 'maincontainer';
+@import 'connexion';
+@import 'plateau';
+@import 'classement';
+@import 'control';
+@import 'footer';
+@import 'header';
+
+html{
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #ecf0f1;
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.mainContainer{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+}

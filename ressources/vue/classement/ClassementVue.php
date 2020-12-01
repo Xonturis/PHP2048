@@ -18,7 +18,7 @@ class ClassementVue implements IVue
                 </thead>
                 <tbody>
                 <?php
-                for ($i = 0; $i < 20; $i++) {
+                for ($i = 0; $i < 100; $i++) {
                     ?>
                     <tr>
                         <th scope="row"><?php echo $i+1 ?></th>

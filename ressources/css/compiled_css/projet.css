@@ -81,85 +81,85 @@ tuile {
 /*region tuile colors*/
 .tuile-0 {
   color: black;
-  background-color: white;
+  background-color: rgba(246, 205, 5, 0.4);
   border: solid 4px #F9CD05;
 }
 
 .tuile-2 {
   color: black;
-  background-color: white;
+  background-color: rgba(219, 159, 4, 0.4);
   border: solid 4px #E3A407;
 }
 
 .tuile-4 {
   color: black;
-  background-color: white;
+  background-color: rgba(243, 156, 18, 0.4);
   border: solid 4px #FD9E08;
 }
 
 .tuile-8 {
   color: black;
-  background-color: white;
+  background-color: rgba(219, 109, 4, 0.4);
   border: solid 4px #E67205;
 }
 
 .tuile-16 {
   color: black;
-  background-color: white;
+  background-color: rgba(249, 88, 5, 0.4);
   border: solid 4px #FE5A05;
 }
 
 .tuile-32 {
   color: black;
-  background-color: white;
+  background-color: rgba(227, 48, 7, 0.4);
   border: solid 4px #E83107;
 }
 
 .tuile-64 {
   color: black;
-  background-color: white;
+  background-color: rgba(253, 18, 8, 0.4);
   border: solid 4px #FF1208;
 }
 
 .tuile-128 {
   color: black;
-  background-color: white;
+  background-color: rgba(230, 5, 91, 0.4);
   border: solid 4px #E8055C;
 }
 
 .tuile-256 {
   color: black;
-  background-color: white;
+  background-color: rgba(254, 5, 225, 0.4);
   border: solid 4px #FF05E2;
 }
 
 .tuile-512 {
   color: black;
-  background-color: white;
+  background-color: rgba(185, 7, 232, 0.4);
   border: solid 4px #B907E8;
 }
 
 .tuile-1024 {
   color: black;
-  background-color: white;
+  background-color: rgba(136, 8, 255, 0.4);
   border: solid 4px #8808FF;
 }
 
 .tuile-2048 {
   color: black;
-  background-color: white;
+  background-color: rgba(60, 5, 232, 0.4);
   border: solid 4px #3C05E8;
 }
 
 .tuile-4096 {
   color: black;
-  background-color: white;
+  background-color: rgba(5, 12, 255, 0.4);
   border: solid 4px #050CFF;
 }
 
 .tuile-8192 {
   color: black;
-  background-color: white;
+  background-color: rgba(7, 74, 232, 0.4);
   border: solid 4px #074AE8;
 }
 

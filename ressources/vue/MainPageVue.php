@@ -3,6 +3,7 @@ require_once PATH_VUE . "/plateau/PlateauVue.php";
 require_once PATH_VUE . "/classement/ClassementVue.php";
 require_once PATH_VUE.'/structure/FooterVue.php';
 require_once PATH_VUE.'/structure/HeaderVueConnected.php';
+require_once PATH_VUE.'/IVue.php';
 
 class MainPageVue implements IVue
 {

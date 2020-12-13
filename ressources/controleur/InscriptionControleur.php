@@ -1,6 +1,6 @@
 <?php
 require_once PATH_MODELE.'/UserDAO.php';
-
+require_once PATH_VUE.'/utilisateurs/InscriptionVue.php';
 
 class InscriptionControleur
 {

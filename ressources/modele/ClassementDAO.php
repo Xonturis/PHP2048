@@ -20,7 +20,7 @@ class ClassementDao{
 
     public static function addElement($score){
         echo "fin de partie dao";
-        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('INSERT INTO PARTIE VALUES(:pseudo,:gagne,:score);');
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('INSERT INTO PARTIES VALUES(:pseudo,:gagne,:score);');
         $statement->bindParam(':pseudo', $score->getName());
         $statement->bindParam(':gagne', $score->getGagne());
         $statement->bindParam(':score', $score->getScore());

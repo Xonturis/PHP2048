@@ -10,7 +10,32 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.gameContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 50%;
+}
+
+.optionContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.optionContainer > form {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+.optionContainer > form > input {
+  color: #f39c12 !important;
+  background-color: white !important;
+  width: 80px;
+  height: 80px;
 }
 
 .connexionForm {

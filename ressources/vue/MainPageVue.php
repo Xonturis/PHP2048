@@ -22,6 +22,18 @@ class MainPageVue implements IVue
         FooterVue::getHtml();
     }
 
+    public static function openGameContainer() {
+        ?>
+        <div class="gameContainer">
+        <?php
+    }
+
+    public static function closeGameContainer() {
+        ?>
+        </div>
+        <?php
+    }
+
     public static function getHtml($toDisplay = NULL)
     {
     }

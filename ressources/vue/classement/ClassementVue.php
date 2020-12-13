@@ -27,13 +27,13 @@ class ClassementVue implements IVue
 
                         if (isset($toDisplay[$i])) {
                             ?>
-                            <td><?php echo $toDisplay[$i]->getName() ?></td>
-                            <td><?php echo $toDisplay[$i]->getScore() ?></td>
+                            <td class="score"><?php echo $toDisplay[$i]->getName() ?></td>
+                            <td class="score"><?php echo $toDisplay[$i]->getScore() ?></td>
                             <?php
                         } else {
                             ?>
-                            <td>???</td>
-                            <td>???</td>
+                            <td class="score">???</td>
+                            <td class="score">???</td>
                             <?php
                         }
                         ?>

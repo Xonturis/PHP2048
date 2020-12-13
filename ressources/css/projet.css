@@ -192,13 +192,16 @@ tuile > p {
 }
 
 .tableContainer {
-  border: #f39c12 1px solid;
+  border: #f39c12 1px solid !important;
   border-radius: 10px;
   background-color: white;
   height: 100%;
   width: 50%;
   overflow: scroll;
-  color: #f39c12;
+}
+
+.table {
+  color: #f39c12 !important;
 }
 
 .controls-wrapper {

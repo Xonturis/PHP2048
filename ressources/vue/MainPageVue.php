@@ -1,11 +1,14 @@
 <?php
 require_once PATH_VUE . "/plateau/PlateauVue.php";
 require_once PATH_VUE . "/classement/ClassementVue.php";
+require_once PATH_VUE.'/structure/FooterVue.php';
+require_once PATH_VUE.'/structure/HeaderVueConnected.php';
 
 class MainPageVue implements IVue
 {
 
     public static function openMainGameContainer() {
+        HeaderVueConnected::getHtml($_SESSION["user"]);
         ?>
         <div class="mainGameContainer">
         <?php
@@ -15,6 +18,7 @@ class MainPageVue implements IVue
         ?>
         </div>
         <?php
+        FooterVue::getHtml();
     }
 
     public static function getHtml($toDisplay = NULL)

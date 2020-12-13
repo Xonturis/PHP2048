@@ -192,12 +192,13 @@ tuile > p {
 }
 
 .tableContainer {
-  border: black 1px solid;
+  border: #f39c12 1px solid;
   border-radius: 10px;
   background-color: white;
   height: 100%;
   width: 50%;
   overflow: scroll;
+  color: #f39c12;
 }
 
 .controls-wrapper {
@@ -205,8 +206,8 @@ tuile > p {
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(100px, auto);
-  height: 200px;
-  width: 260px;
+  height: auto;
+  width: auto;
 }
 
 .controls-wrapper > form > input {
@@ -234,6 +235,11 @@ tuile > p {
 .control-right {
   grid-column: 3;
   grid-row: 2;
+}
+
+.control-reset {
+  grid-column: 2;
+  grid-row: 3;
 }
 
 .footer {

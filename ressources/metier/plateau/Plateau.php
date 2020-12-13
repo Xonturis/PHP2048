@@ -172,9 +172,10 @@ class Plateau
                     }
                 }
             }
+            return true;
         }
+        return false;
 
-        return true;
     }
 
     /**

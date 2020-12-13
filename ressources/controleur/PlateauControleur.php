@@ -18,6 +18,12 @@ class PlateauControleur
 
     private static $plateau;
 
+    public static function reset() {
+        self::$plateau = PlateauDAO::getOrCreateCurrentPlateau($_SESSION["user"]);
+        self::$plateau->reset();
+        MainPageControleur::showPage();
+    }
+
     public static function mouvement() {
         $mouvement = $_GET["mouvement"];
         if(preg_match("/(haut)|(bas)|(gauche)|(droite)/", $mouvement)){

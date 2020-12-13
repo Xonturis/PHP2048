@@ -83,7 +83,7 @@ class Plateau
     }
 
     /**
-     * 
+     *
      * @param int $x
      * @param int $y
      * @return Tuile|null
@@ -162,13 +162,13 @@ class Plateau
             for ($x = 0; $x < $this->size; $x++) {
                 for ($y = 0; $y < $this->size; $y++) {
                     $val = $this->getTuile($x, $y)->getScore();
-                    $valRight = $this->getTuile($x, $y + 1)->getScore();
-                    if ($valRight != null && $valRight == $val) {
+                    $valRight = $this->getTuile($x, $y + 1);
+                    if ($valRight != null && $valRight->getScore() == $val) {
                         echo "C OK";
                         return false;
                     }
                     $valDown = $this->getTuile($x + 1, $y);
-                    if ($valDown != null && $valDown == $val) {
+                    if ($valDown != null && $valDown->getScore() == $val) {
                         echo "C OK";
                         return false;
                     }

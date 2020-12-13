@@ -5,11 +5,13 @@ class Score
 {
     public $name;
     public $score;
+    public $gagne;
 
-    function __construct($name, $score)
+    function __construct($name, $score,$gagne)
     {
         $this->name = $name;
         $this->score = $score;
+        $this->gagne = $gagne;
     }
 
     public static function compareTo(Score $score1, Score $score2): int
@@ -27,5 +29,9 @@ class Score
     public function getScore()
     {
         return $this->score;
+    }
+
+    public function getGagne(){
+        return $this->gagne;
     }
 }

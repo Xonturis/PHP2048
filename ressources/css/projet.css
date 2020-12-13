@@ -32,6 +32,7 @@
   border: solid 1px #f39c12;
   padding: 2%;
   background-color: white !important;
+  margin: auto;
 }
 
 .container > * {

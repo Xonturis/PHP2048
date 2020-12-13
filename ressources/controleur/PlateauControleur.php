@@ -37,6 +37,7 @@ class PlateauControleur
             if(self::$plateau->perdu()) {
                 ClassementControleur::addScore(new Score($_SESSION["user"]->getPseudo(),self::$plateau->getScore(),self::$plateau->getMaxTuile() >= 2048));
                 self::afficherFin(self::$plateau);
+                self::$plateau->reset();
             }else {
                 MainPageControleur::showPage();
             }
@@ -51,11 +52,7 @@ class PlateauControleur
     }
 
     private static function afficherFin(Plateau $plateau){
-        if($plateau->getMaxTuile() >= 2048) {
-            VictoireVue::getHtml(array("maxTuile" => $plateau->getMaxTuile(), "score" => $plateau->getScore()));
-        } else {
-            DefaiteVue::getHtml(array("maxTuile" => $plateau->getMaxTuile(), "score" => $plateau->getScore()));
-        }
-        MainPageControleur::showPage();
+        $_GET["data"] = array("maxTuile" => $plateau->getMaxTuile(), "score" => $plateau->getScore());
+        Routeur::redirectTo("FinPartieControleur", $plateau->getMaxTuile() >= 2048?"gagne":"perdu");
     }
 }

@@ -29,7 +29,7 @@ class Routeur {
 
     private static function displayPage() {
         $content = ob_get_clean();
-        require (HOME_SITE."/site_template.php");
+        require(HOME_SITE . "/vue/templates/site_template.php");
     }
 
     // Traite une requête entrante

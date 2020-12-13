@@ -6,6 +6,8 @@ class DefaiteVue implements IVue
 
     public static function getHtml($toDisplay = NULL)
     {
-        echo "PERDU";
+        $score = $toDisplay["score"];
+        $maxTuile = $toDisplay["maxTuile"];
+        include PATH_VUE."/templates/defaite_template.php";
     }
 }

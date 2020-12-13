@@ -212,10 +212,13 @@ class Plateau
      * Reset le plateau
      */
     public function reset() {
+        $i = 1;
         foreach ($this->tuiles as $ligne) {
             foreach ($ligne as $tuile) {
+//                $tuile->setScore($i+2048);
                 $tuile->setScore(0);
                 $tuile->unflagMerge();
+                $i ++;
             }
         }
 

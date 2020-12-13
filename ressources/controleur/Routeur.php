@@ -18,12 +18,6 @@ class Routeur {
 
     private static  function processPageToDisplay() {
         self::startOb();
-        if(session_status() == PHP_SESSION_ACTIVE && isset($_SESSION["user"])){
-            HeaderVueConnected::getHtml($_SESSION["user"]);
-        }
-        else{
-            HeaderVue::getHtml();
-        }
         self::callReflectiveController();
     }
 
@@ -34,7 +28,6 @@ class Routeur {
     }
 
     private static function displayPage() {
-        FooterVue::getHtml();
         $content = ob_get_clean();
         require (HOME_SITE."/site_template.php");
     }
@@ -45,38 +38,6 @@ class Routeur {
         self::processPageToDisplay();
         self::displayPage();
     }
-
-// todo remove after approval
- //  region To Remove
-//    public static function routerRequete() {
-//        ob_start();
-//
-//        HeaderVue::getHtml();
-//
-//        var_dump($_GET);
-//
-//        // Default controller
-//        self::applyDefaults();
-//
-//        $ctrlName = $_GET["controller"];
-//        $mthdName = $_GET["method"];
-//
-//        try {
-//            $reflectionClass = new ReflectionClass($ctrlName);
-//            $method = $reflectionClass->getMethod($mthdName);
-//            $method->invoke(NULL);
-//        } catch (ReflectionException $exp) {
-//            echo("ERROR<br>");
-//            echo($exp->getMessage());
-//            // todo handle err
-//        }
-//
-//
-//        FooterVue::getHtml();
-//        $content = ob_get_clean();
-//        require (HOME_SITE."/site_template.php");
-//    }
-//endregion
 
     private static function callReflectiveController() {
         $ctrlName = $_GET["controller"];

@@ -1,5 +1,8 @@
 <?php
 
+require_once PATH_METIER.'/classement/Classement.php';
+require_once PATH_METIER.'/classement/Score.php';
+
 class ClassementDao{
 
     public static function getElements(int $nb) : ?Classement{

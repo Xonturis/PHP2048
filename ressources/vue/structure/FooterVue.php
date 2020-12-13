@@ -1,5 +1,5 @@
 <?php
-
+require_once PATH_VUE.'/IVue.php';
 
 class FooterVue implements IVue
 {

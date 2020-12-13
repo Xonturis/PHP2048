@@ -4,12 +4,24 @@ require_once PATH_VUE.'/utilisateurs/InscriptionVue.php';
 
 class InscriptionControleur
 {
+    /**
+     * Affiche la vue d'inscription
+     */
     public static function showSignUpPage(){
         InscriptionVue::getHtml();
     }
 
+    /**
+     * Ajoute l'utilisateur à la base de données.
+     */
     public static function registerUser(){
-        UserDAO::addUser($_GET["username"],$_GET["password"]);
-        Routeur::redirectTo("MainPageControleur", "showPage");
+        $res = UserDAO::addUser($_GET["username"],$_GET["password"]);
+        if($res){
+            Routeur::redirectTo("MainPageControleur", "showPage");
+        }
+        else{
+            $_GET["error"] = true;
+            Routeur::redirectTo("InscriptionControleur", "showSignUpPage");
+        }
     }
 }

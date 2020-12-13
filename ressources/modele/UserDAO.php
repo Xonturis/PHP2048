@@ -30,9 +30,10 @@ class UserDAO
         try {
             $statement->execute();
         }catch (PDOException $e){
-            //do something
+            echo 'L\'utilisateur existe déjà';
+            return false;
         }
-        return NULL;
+        return true;
         
     }
 

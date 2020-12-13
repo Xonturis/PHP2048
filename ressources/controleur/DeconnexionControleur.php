@@ -2,6 +2,9 @@
 
 class DeconnexionControleur
 {
+    /**
+     * Déconnecte l'utilisateur
+     */
     public static function disconnectUser(){
         session_destroy();
         $_SESSION = [];

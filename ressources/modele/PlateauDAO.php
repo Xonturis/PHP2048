@@ -72,9 +72,4 @@ class PlateauDAO
         return $fetch != NULL && count($fetch)>0;
     }
 
-    public static function savePlateauToDBAndAddRewind(Plateau $plateau, $user) {
-        self::savePlateauToDB($plateau, $user);
-        self::addRewind($plateau, $user);
-    }
-
 }

@@ -222,6 +222,10 @@ tuile > p {
   font-size: xxx-large;
 }
 
+.stats {
+  font-size: large;
+}
+
 .tableContainer {
   border: #f39c12 1px solid !important;
   border-radius: 10px;

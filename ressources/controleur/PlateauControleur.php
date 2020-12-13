@@ -57,7 +57,13 @@ class PlateauControleur
             MainPageControleur::showPage();
             return;
         }
+        $rewindCount = 0;
+        self::$plateau = PlateauDAO::getOrCreateCurrentPlateau($_SESSION["user"]);
+        if(self::$plateau != null)
+            $rewindCount = self::$plateau->getRewindCount();
+
         self::$plateau = PlateauDAO::getRewind($user);
+        self::$plateau->incrementRewindCount($rewindCount);
         PlateauDAO::savePlateauToDB(self::$plateau, $_SESSION["user"]);
         MainPageControleur::showPage();
     }
@@ -65,7 +71,8 @@ class PlateauControleur
     public static function afficherPlateau() {
         if(self::$plateau == null)
             self::$plateau = PlateauDAO::getOrCreateCurrentPlateau($_SESSION["user"]);
-        PlateauVue::getHtml(self::$plateau->getIntegerGrid());
+        $data = array("maxTuile" => self::$plateau->getMaxTuile(), "score" => self::$plateau->getScore(), "grid" => self::$plateau->getIntegerGrid());
+        PlateauVue::getHtml($data);
     }
 
     private static function afficherFin(Plateau $plateau){

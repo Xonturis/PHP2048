@@ -9,10 +9,12 @@ class PlateauVue implements IVue
     public static function getHtml($toDisplay = NULL)
     {
         ?>
+        <span class="stats score">Score : <?=$toDisplay["score"]?></span>
+        <span class="stats maxtuile">Meilleure tuile : <?=$toDisplay["maxTuile"]?></span>
         <div class="Game">
             <plateau>
                 <?php
-                foreach ($toDisplay as $ligne) {
+                foreach ($toDisplay["grid"] as $ligne) {
                     LigneVue::getHtml($ligne);
                 }
                 ?>

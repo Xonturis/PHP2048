@@ -5,6 +5,8 @@ require_once "Position.php";
 
 class Plateau
 {
+
+    private $rewindCount;
     private $size;
     private $tuiles;
 
@@ -14,6 +16,7 @@ class Plateau
      */
     public function __construct($size = 4)
     {
+        $this->rewindCount = 0;
         $tuiles = array();
         $this->lignes = array();
 
@@ -222,6 +225,7 @@ class Plateau
             }
         }
 
+        $this->rewindCount = 0;
         $this->aleatTuile();
         $this->aleatTuile();
     }
@@ -236,6 +240,7 @@ class Plateau
                 $score += $tuile->getScore();
             }
         }
+        $score -= $this->rewindCount*5;
         return $score;
     }
 
@@ -270,6 +275,16 @@ class Plateau
         }
 
         return $grid;
+    }
+
+    public function incrementRewindCount($oldCount)
+    {
+        $this->rewindCount = $oldCount + 1;
+    }
+
+    public function getRewindCount()
+    {
+        return $this->rewindCount;
     }
 
 }

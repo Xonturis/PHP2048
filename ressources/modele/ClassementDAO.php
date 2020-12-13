@@ -13,12 +13,13 @@ class ClassementDao{
 
         $classment = new Classement();
         foreach ($result as $value){
-            $classment->addScore(new Score($value["pseudo"],$value["score"]));
+            $classment->addScore(new Score($value["pseudo"],$value["score"],0));
         }
         return $classment;
     }
 
     public static function addElement($score){
+        echo "fin de partie dao";
         $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('INSERT INTO PARTIE VALUES(:pseudo,:gagne,:score);');
         $statement->bindParam(':pseudo', $score->getName());
         $statement->bindParam(':gagne', $score->getGagne());

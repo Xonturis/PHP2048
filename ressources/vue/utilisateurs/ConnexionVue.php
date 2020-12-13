@@ -1,10 +1,13 @@
 <?php
 require_once PATH_VUE.'/IVue.php';
+require_once PATH_VUE.'/structure/FooterVue.php';
+require_once PATH_VUE.'/structure/HeaderVue.php';
 
 class ConnexionVue implements IVue
 {
     public static function getHtml($toDisplay = NULL)
     {
+        HeaderVue::getHtml();
         ?>
         <form method="GET" class="connexionForm">
             <div class="container">
@@ -23,5 +26,6 @@ class ConnexionVue implements IVue
             </div>
         </form>
         <?php
+        FooterVue::getHtml();
     }
 }

@@ -1,11 +1,14 @@
 <?php
 
+require_once PATH_VUE.'/structure/FooterVue.php';
+require_once PATH_VUE.'/structure/HeaderVue.php';
 
 class InscriptionVue implements IVue
 {
 
     public static function getHtml($toDisplay = NULL)
     {
+        HeaderVue::getHtml();
         ?>
         <form method="GET" class="connexionForm">
             <div class="container">
@@ -24,5 +27,6 @@ class InscriptionVue implements IVue
             </div>
         </form>
         <?php
+        FooterVue::getHtml();
     }
 }

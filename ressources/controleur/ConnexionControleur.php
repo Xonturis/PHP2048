@@ -1,16 +1,12 @@
 <?php
 require_once PATH_MODELE.'/UserDAO.php';
-require_once PATH_VUE.'/structure/FooterVue.php';
-require_once PATH_VUE.'/structure/HeaderVue.php';
 require_once PATH_VUE.'/utilisateurs/ConnexionVue.php';
 
 class ConnexionControleur{
 
 
     public static function displayConnexionPage() {
-        HeaderVue::getHtml();
         ConnexionVue::getHtml();
-        FooterVue::getHtml();
     }
 
     public static function connexionAttempt(){

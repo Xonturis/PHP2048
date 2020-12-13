@@ -6,7 +6,7 @@ require_once PATH_METIER.'/classement/Score.php';
 class ClassementDao{
 
     public static function getElements(int $nb) : ?Classement{
-        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('SELECT pseudo,score FROM PARTIES where gagne=1 ORDER BY score ASC LIMIT :nb;');
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('SELECT pseudo,score FROM PARTIES ORDER BY score ASC LIMIT :nb;');
         $statement->bindParam(':nb', $nb);
         $statement->execute();
         $result = $statement->fetchAll();
@@ -19,13 +19,19 @@ class ClassementDao{
     }
 
     public static function addElement($score){
-        echo "fin de partie dao";
-        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('INSERT INTO PARTIES VALUES(:pseudo,:gagne,:score);');
-        $statement->bindParam(':pseudo', $score->getName());
-        $statement->bindParam(':gagne', $score->getGagne());
-        $statement->bindParam(':score', $score->getScore());
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('INSERT INTO PARTIES (pseudo,gagne,score) VALUES(:pseudo,:gagne,:score);');
+        $pseudo = $score->getName();
+        $gagne = $score->getGagne();
+        $score = $score->getScore();
 
+        $statement->bindParam(':pseudo', $pseudo);
+        $statement->bindParam(':gagne', $gagne);
+        $statement->bindParam(':score', $score);
 
-        $statement->execute();
+        try{
+            $statement->execute();
+        } catch (PDOException $e){
+
+        }
     }
 }

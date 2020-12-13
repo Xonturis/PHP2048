@@ -13,7 +13,6 @@ class Classement
     public function addScore(Score $score)
     {
         array_push($this->tabScore, $score);
-        usort($this->tabScore,"Score::compareTo");
     }
 
     public function removeScore(Score $score)

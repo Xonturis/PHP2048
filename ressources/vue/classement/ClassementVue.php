@@ -6,6 +6,7 @@ class ClassementVue implements IVue
     public static function getHtml($toDisplay = NULL)
     {
         $toDisplay = $toDisplay->getTab();
+        //var_dump($toDisplay);
         ?>
         <div class="tableContainer">
             <table class="table">

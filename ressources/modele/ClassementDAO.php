@@ -6,11 +6,10 @@ require_once PATH_METIER.'/classement/Score.php';
 class ClassementDao{
 
     public static function getElements(int $nb) : ?Classement{
-        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('SELECT pseudo,score FROM PARTIES ORDER BY score ASC LIMIT :nb;');
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('SELECT pseudo,score FROM PARTIES ORDER BY score DESC LIMIT :nb;');
         $statement->bindParam(':nb', $nb);
         $statement->execute();
         $result = $statement->fetchAll();
-
         $classment = new Classement();
         foreach ($result as $value){
             $classment->addScore(new Score($value["pseudo"],$value["score"],0));

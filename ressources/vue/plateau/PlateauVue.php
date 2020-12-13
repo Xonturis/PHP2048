@@ -2,6 +2,7 @@
 require_once PATH_METIER . "/plateau/Plateau.php";
 require_once "LigneVue.php";
 require_once PATH_VUE . "/IVue.php";
+require_once PATH_VUE.'/controls/ControlsVue.php';
 
 class PlateauVue implements IVue
 {

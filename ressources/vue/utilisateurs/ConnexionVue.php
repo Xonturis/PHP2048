@@ -1,4 +1,5 @@
 <?php
+require_once PATH_VUE.'/IVue.php';
 
 class ConnexionVue implements IVue
 {

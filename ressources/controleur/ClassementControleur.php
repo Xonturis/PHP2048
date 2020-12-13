@@ -1,5 +1,6 @@
 <?php
 
+require_once PATH_MODELE.'/ClassementDAO.php';
 
 class ClassementControleur
 {

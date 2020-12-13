@@ -164,19 +164,17 @@ class Plateau
                     $val = $this->getTuile($x, $y)->getScore();
                     $valRight = $this->getTuile($x, $y + 1);
                     if ($valRight != null && $valRight->getScore() == $val) {
-                        echo "C OK";
                         return false;
                     }
                     $valDown = $this->getTuile($x + 1, $y);
                     if ($valDown != null && $valDown->getScore() == $val) {
-                        echo "C OK";
                         return false;
                     }
                 }
             }
         }
 
-        return false;
+        return true;
     }
 
     /**
@@ -216,6 +214,7 @@ class Plateau
         foreach ($this->tuiles as $ligne) {
             foreach ($ligne as $tuile) {
                 $tuile->setScore(0);
+                $tuile->unflagMerge();
             }
         }
 

@@ -12,11 +12,13 @@ class MainPageControleur
             Routeur::redirectTo("ConnexionControleur", "displayConnexionPage");
             return;
         }
+        $user = $_SESSION["user"];
 
+        HeaderVueConnected::getHtml($user->getPseudo());
         MainPageVue::openMainGameContainer();
 
         MainPageVue::openGameContainer();
-        OptionVue::getHtml();
+        OptionVue::getHtml(PlateauDAO::hasRewinds($user));
         PlateauControleur::afficherPlateau();
         MainPageVue::closeGameContainer();
 

@@ -19,23 +19,30 @@ class PlateauControleur
     private static $plateau;
 
     public static function reset() {
-        self::$plateau = PlateauDAO::getOrCreateCurrentPlateau($_SESSION["user"]);
+        $user = $_SESSION["user"];
+        PlateauDAO::removeAllRewinds($user);
+        self::$plateau = PlateauDAO::getOrCreateCurrentPlateau($user);
         self::$plateau->reset();
+        PlateauDAO::savePlateauToDB(self::$plateau, $_SESSION["user"]);
         MainPageControleur::showPage();
     }
 
     public static function mouvement() {
         $mouvement = $_GET["mouvement"];
+        $user = $_SESSION["user"];
         if(preg_match("/(haut)|(bas)|(gauche)|(droite)/", $mouvement)){
             $direction = array_search($mouvement, array("haut", "bas", "gauche", "droite"));
-            self::$plateau = PlateauDAO::getOrCreateCurrentPlateau($_SESSION["user"]);
+            self::$plateau = PlateauDAO::getOrCreateCurrentPlateau($user);
 
+            PlateauDAO::addRewind(self::$plateau, $_SESSION["user"]);
             self::$plateau->unflagMergeTuiles();
             self::$plateau->move($direction);
             self::$plateau->aleatTuile();
+            PlateauDAO::savePlateauToDB(self::$plateau, $_SESSION["user"]);
 
             if(self::$plateau->perdu()) {
-                ClassementControleur::addScore(new Score($_SESSION["user"]->getPseudo(),self::$plateau->getScore(),self::$plateau->getMaxTuile() >= 2048));
+                ClassementControleur::addScore(new Score($user->getPseudo(),self::$plateau->getScore(),self::$plateau->getMaxTuile() >= 2048));
+                PlateauDAO::removeAllRewinds($user);
                 self::afficherFin(self::$plateau);
                 self::$plateau->reset();
             }else {
@@ -44,11 +51,21 @@ class PlateauControleur
         }
     }
 
+    public static function rewind() {
+        $user = $_SESSION["user"];
+        if(!PlateauDAO::hasRewinds($user)) {
+            MainPageControleur::showPage();
+            return;
+        }
+        self::$plateau = PlateauDAO::getRewind($user);
+        PlateauDAO::savePlateauToDB(self::$plateau, $_SESSION["user"]);
+        MainPageControleur::showPage();
+    }
+
     public static function afficherPlateau() {
         if(self::$plateau == null)
             self::$plateau = PlateauDAO::getOrCreateCurrentPlateau($_SESSION["user"]);
         PlateauVue::getHtml(self::$plateau->getIntegerGrid());
-        PlateauDAO::savePlateauToDB(self::$plateau, $_SESSION["user"]);
     }
 
     private static function afficherFin(Plateau $plateau){

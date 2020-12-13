@@ -219,6 +219,7 @@ tuile > p {
 
 [class^=control-] > input {
   height: 100%;
+  font-size: xxx-large;
 }
 
 .tableContainer {

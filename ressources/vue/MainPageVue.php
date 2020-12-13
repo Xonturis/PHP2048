@@ -9,7 +9,6 @@ class MainPageVue implements IVue
 {
 
     public static function openMainGameContainer() {
-        HeaderVueConnected::getHtml($_SESSION["user"]);
         ?>
         <div class="mainGameContainer">
         <?php

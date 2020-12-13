@@ -30,4 +30,51 @@ class PlateauDAO
         return unserialize($fetched["partie_blob"]); // current game
     }
 
+    public static function getRewind(User $user) : Plateau {
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('SELECT blob FROM REWIND WHERE pseudo = :pseudo ORDER BY mouvement DESC LIMIT 1');
+        $pseudo = $user->getPseudo();
+        $statement->bindParam(':pseudo', $pseudo);
+        $statement->execute();
+        $fetched=$statement->fetch(PDO::FETCH_ASSOC);
+        self::removeRewind($user);
+        return unserialize($fetched["blob"]); // rewinded
+    }
+
+    public static function removeRewind(User $user) {
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('DELETE FROM REWIND WHERE pseudo = :pseudo AND mouvement = (SELECT mouvement FROM REWIND WHERE pseudo = :pseudo ORDER BY mouvement DESC LIMIT 1)');
+        $pseudo = $user->getPseudo();
+        $statement->bindParam(':pseudo', $pseudo);
+        $statement->execute();
+    }
+
+    public static function removeAllRewinds(User $user) {
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('DELETE FROM REWIND WHERE pseudo = :pseudo');
+        $pseudo = $user->getPseudo();
+        $statement->bindParam(':pseudo', $pseudo);
+        $statement->execute();
+    }
+
+    public static function addRewind(Plateau $plateau, User $user) {
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('INSERT INTO REWIND VALUES(:pseudo, (SELECT coalesce(max(mouvement),0) as mouvement FROM REWIND WHERE pseudo = :pseudo) + 1, :blob)');
+        $pseudo = $user->getPseudo();
+        $serialized = serialize($plateau);
+        $statement->bindParam(':pseudo', $pseudo);
+        $statement->bindParam(':blob', $serialized);
+        $statement->execute();
+    }
+
+    public static function hasRewinds(User $user) : bool {
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('SELECT null FROM REWIND WHERE pseudo = :pseudo LIMIT 1');
+        $pseudo = $user->getPseudo();
+        $statement->bindParam(':pseudo', $pseudo);
+        $statement->execute();
+        $fetch = $statement->fetch();
+        return $fetch != NULL && count($fetch)>0;
+    }
+
+    public static function savePlateauToDBAndAddRewind(Plateau $plateau, $user) {
+        self::savePlateauToDB($plateau, $user);
+        self::addRewind($plateau, $user);
+    }
+
 }

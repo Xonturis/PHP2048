@@ -14,4 +14,10 @@ class ClassementDao{
         }
         return $classment;
     }
+
+    public static function addElement($score){
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('INSERT INTO PARTIE VALUES();');;
+        $statement->bindParam(':nb', $nb);
+        $statement->execute();
+    }
 }

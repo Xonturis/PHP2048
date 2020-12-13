@@ -29,6 +29,7 @@ class PlateauControleur
             self::$plateau->aleatTuile();
 
             if(self::$plateau->perdu()) {
+                ClassementControleur::addScore(new Score($_SESSION["user"],self::$plateau->getScore()));
                 self::afficherFin(self::$plateau);
             }else {
                 MainPageControleur::showPage();

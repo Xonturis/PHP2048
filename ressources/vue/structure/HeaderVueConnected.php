@@ -11,7 +11,6 @@ class HeaderVueConnected implements IVue
         <nav class="header navbar navbar-light bg-light">
             <span class="title navbar-brand">2048, LE JEU</span>
             <div class="navItemContainer">
-                <p id="userName"> test : <?php{echo $userName;}?> </p>
                 <form method="get">
                     <button id="disconnectButton" type="submit" class="btn btn-warning">Déconnexion</button>
                     <input type="hidden" name="controller" value="DeconnexionControleur">

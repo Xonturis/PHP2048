@@ -10,7 +10,7 @@ class ClassementControleur
         return ClassementDao::getElements($nb);
     }
 
-    public static function addScore(){
-
+    public static function addScore($score){
+        ClassementDao::addElement($score);
     }
 }

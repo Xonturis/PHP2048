@@ -124,12 +124,9 @@ class Plateau
                             $moved = true;
                     } else {
                         $score = $candidateTuile->getScore()*2;
-//                        $incrementScore = $candidateTuile->getScore() != 0 && $currentTuile->getScore() != 0;
                         if($candidateTuile->mergeWith($currentTuile)) {
                             $moved = true;
-
-//                            if($incrementScore)
-                                $this->score += $score;
+                            $this->score += $score;
                         } else if($this->moveTuileTo($currentTuile, $plusLoinTuile))
                             $moved = true;
                     }

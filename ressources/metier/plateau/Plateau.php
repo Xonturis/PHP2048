@@ -9,6 +9,7 @@ class Plateau
     private $rewindCount;
     private $size;
     private $tuiles;
+    private $score;
 
     /**
      * Plateau constructor.
@@ -17,6 +18,7 @@ class Plateau
     public function __construct($size = 4)
     {
         $this->rewindCount = 0;
+        $this->score = 0;
         $tuiles = array();
         $this->lignes = array();
 
@@ -36,10 +38,6 @@ class Plateau
         $this->aleatTuile();
         $this->unflagMergeTuiles();
     }
-
-
-    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    //todo                          TO BE OPTIMIZED
 
     /**
      * Trouve l'ordre des tuiles à parcourir pour éviter d'avoir à faire 4 méthodes ou un switch
@@ -102,6 +100,7 @@ class Plateau
      * @param int $direction la direction
      */
     public function move(int $direction) {
+        $moved = false;
         $direction = new Direction($direction);
         $orders = $this->getRightOrder($direction);
         $orderX = $orders["x"];
@@ -117,29 +116,39 @@ class Plateau
                 $plusLoinTuile = $position->getTuile();
 
                 if($candidateTuile == null) {
-                    $this->moveTuileTo($currentTuile, $plusLoinTuile);
+                    if ($this->moveTuileTo($currentTuile, $plusLoinTuile))
+                        $moved = true;
                 } else {
                     if($candidateTuile->merged()) {
-                        $this->moveTuileTo($currentTuile, $plusLoinTuile);
-                    } else if(!$candidateTuile->mergeWith($currentTuile)) {
-                        $this->moveTuileTo($currentTuile, $plusLoinTuile);
+                        if ($this->moveTuileTo($currentTuile, $plusLoinTuile))
+                            $moved = true;
+                    } else {
+                        $score = $candidateTuile->getScore()*2;
+//                        $incrementScore = $candidateTuile->getScore() != 0 && $currentTuile->getScore() != 0;
+                        if($candidateTuile->mergeWith($currentTuile)) {
+                            $moved = true;
+
+//                            if($incrementScore)
+                                $this->score += $score;
+                        } else if($this->moveTuileTo($currentTuile, $plusLoinTuile))
+                            $moved = true;
                     }
                 }
             }
         }
 
+        return $moved;
     }
 
     /**
      * Déplace from vers to en effectuant le test pour éviter de déplacer une tuile vers elle même
      * @param Tuile $from depuis quelle tuile
      * @param Tuile $to vers quelle tuile
+     * @return bool true si on déplace false sinon
      */
-    private function moveTuileTo(Tuile $from, Tuile $to) {
-        if($from !== $to)
-            $to->replaceWith($from);
+    private function moveTuileTo(Tuile $from, Tuile $to) : bool{
+        return $to->replaceWith($from);
     }
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     /**
      * @return array des tuiles ayant comme score = 0
@@ -226,6 +235,7 @@ class Plateau
         }
 
         $this->rewindCount = 0;
+        $this->score = 0;
         $this->aleatTuile();
         $this->aleatTuile();
     }
@@ -233,15 +243,9 @@ class Plateau
     /**
      * @return int somme des tuiles
      */
-    public function getScore() {
-        $score = 0;
-        foreach ($this->tuiles as $ligne) {
-            foreach ($ligne as $tuile) {
-                $score += $tuile->getScore();
-            }
-        }
-        $score -= $this->rewindCount*5;
-        return $score;
+    public function getScore(): int
+    {
+        return $this->score;
     }
 
     /**

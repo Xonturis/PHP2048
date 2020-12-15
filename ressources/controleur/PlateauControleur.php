@@ -36,8 +36,8 @@ class PlateauControleur
 
             PlateauDAO::addRewind(self::$plateau, $_SESSION["user"]);
             self::$plateau->unflagMergeTuiles();
-            self::$plateau->move($direction);
-            self::$plateau->aleatTuile();
+            if(self::$plateau->move($direction))
+                self::$plateau->aleatTuile();
             PlateauDAO::savePlateauToDB(self::$plateau, $_SESSION["user"]);
 
             if(self::$plateau->perdu()) {

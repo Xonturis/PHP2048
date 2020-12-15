@@ -24,7 +24,7 @@ class Tuile
     }
 
     public function replaceWith(Tuile $tuile) :bool {
-        if($this->getScore()==$tuile->getScore() || $this->getScore()==0) {
+        if($tuile !== $this && ($this->getScore()==$tuile->getScore() || $this->getScore()==0)) {
             $this->setScore($this->getScore()+$tuile->getScore());
             $tuile->setScore(0);
             return true;
@@ -46,6 +46,5 @@ class Tuile
 
     public function merged() :bool {
         return $this->merged;
-//        return true;
     }
 }

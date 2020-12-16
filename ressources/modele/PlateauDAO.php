@@ -9,7 +9,7 @@ class PlateauDAO
         $serialized = serialize($plateau);
         $pseudo = $user->getPseudo();
 
-        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('REPLACE INTO PARTIES_EN_COURS(pseudo, partie_blob) VALUES(:pseudo, :partie_blob);');;
+        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('REPLACE INTO PARTIES_EN_COURS(pseudo, partie_blob) VALUES(:pseudo, :partie_blob);');
         $statement->bindParam(':pseudo', $pseudo);
         $statement->bindParam(':partie_blob', $serialized);
         $statement->execute();
@@ -22,10 +22,9 @@ class PlateauDAO
         $statement->execute();
         $fetched=$statement->fetch(PDO::FETCH_ASSOC);
 
-//        var_dump($fetched);
-
-        if($fetched == false)
+        if(!$fetched) {
             return new Plateau(); // no current game
+        }
 
         return unserialize($fetched["partie_blob"]); // current game
     }

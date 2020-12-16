@@ -36,8 +36,9 @@ class PlateauControleur
 
             PlateauDAO::addRewind(self::$plateau, $_SESSION["user"]);
             self::$plateau->unflagMergeTuiles();
-            if(self::$plateau->move($direction))
+            if(self::$plateau->move($direction)) {
                 self::$plateau->aleatTuile();
+            }
             PlateauDAO::savePlateauToDB(self::$plateau, $_SESSION["user"]);
 
             if(self::$plateau->perdu()) {
@@ -59,8 +60,9 @@ class PlateauControleur
         }
         $rewindCount = 0;
         self::$plateau = PlateauDAO::getOrCreateCurrentPlateau($_SESSION["user"]);
-        if(self::$plateau != null)
+        if(self::$plateau != null) {
             $rewindCount = self::$plateau->getRewindCount();
+        }
 
         self::$plateau = PlateauDAO::getRewind($user);
         self::$plateau->incrementRewindCount($rewindCount);
@@ -69,8 +71,9 @@ class PlateauControleur
     }
 
     public static function afficherPlateau() {
-        if(self::$plateau == null)
+        if(self::$plateau == null) {
             self::$plateau = PlateauDAO::getOrCreateCurrentPlateau($_SESSION["user"]);
+        }
         $data = array("maxTuile" => self::$plateau->getMaxTuile(), "score" => self::$plateau->getScore(), "grid" => self::$plateau->getIntegerGrid());
         PlateauVue::getHtml($data);
     }

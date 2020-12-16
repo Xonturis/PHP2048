@@ -12,7 +12,6 @@ class SqliteConnexion{
 			//à la place utiliser une constante qui sera initialisée dans config/config.php
 			// pas de host, ni de user, ni de password
             $dir = BD;
-//            echo $dir;
 			$this->connexion = new PDO("sqlite:$dir");
 			$this->connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $e) {

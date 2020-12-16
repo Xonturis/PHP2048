@@ -35,5 +35,6 @@ class MainPageVue implements IVue
 
     public static function getHtml($toDisplay = NULL)
     {
+        // Vide puisque la vue fonctionne différemment pour faciliter son utilisation
     }
 }

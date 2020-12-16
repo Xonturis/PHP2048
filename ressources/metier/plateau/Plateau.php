@@ -90,8 +90,9 @@ class Plateau
      * @return Tuile|null
      */
     public function getTuile(int $x, int $y) :?Tuile {
-        if($x < 0 || $x >= $this->size || $y < 0 || $y >= $this->size)
+        if($x < 0 || $x >= $this->size || $y < 0 || $y >= $this->size) {
             return null;
+        }
         return $this->tuiles[$x][$y];
     }
 
@@ -109,31 +110,48 @@ class Plateau
         foreach ($orderX as $x) {
             foreach ($orderY as $y) {
                 $currentTuile = $this->getTuile($x, $y);
-                if($currentTuile->getScore() == 0) continue;
+                if($currentTuile->getScore() == 0) {
+                    continue;
+                }
                 $position = new Position($x, $y, $this, $direction);
                 $position->lePlusLoinPossible();
                 $candidateTuile = $position->prochaineTuile();
                 $plusLoinTuile = $position->getTuile();
 
-                if($candidateTuile == null) {
-                    if ($this->moveTuileTo($currentTuile, $plusLoinTuile))
-                        $moved = true;
-                } else {
-                    if($candidateTuile->merged()) {
-                        if ($this->moveTuileTo($currentTuile, $plusLoinTuile))
-                            $moved = true;
-                    } else {
-                        $score = $candidateTuile->getScore()*2;
-                        if($candidateTuile->mergeWith($currentTuile)) {
-                            $moved = true;
-                            $this->score += $score;
-                        } else if($this->moveTuileTo($currentTuile, $plusLoinTuile))
-                            $moved = true;
-                    }
-                }
+                $moved = $this->tryMove($candidateTuile, $currentTuile, $plusLoinTuile);
             }
         }
 
+        return $moved;
+    }
+
+    /**
+     * @param Tuile|null $candidateTuile
+     * @param Tuile|null $currentTuile
+     * @param Tuile|null $plusLoinTuile
+     * @return bool
+     */
+    private function tryMove(?Tuile $candidateTuile, ?Tuile $currentTuile, ?Tuile $plusLoinTuile): bool
+    {
+        if ($candidateTuile == null) {
+            if ($this->moveTuileTo($currentTuile, $plusLoinTuile)) {
+                $moved = true;
+            }
+        } else {
+            if ($candidateTuile->merged()) {
+                if ($this->moveTuileTo($currentTuile, $plusLoinTuile)) {
+                    $moved = true;
+                }
+            } else {
+                $mergeScore = $candidateTuile->getScore() * 2;
+                if ($candidateTuile->mergeWith($currentTuile)) {
+                    $moved = true;
+                    $this->score += $mergeScore;
+                } else if ($this->moveTuileTo($currentTuile, $plusLoinTuile)) {
+                    $moved = true;
+                }
+            }
+        }
         return $moved;
     }
 
@@ -170,13 +188,7 @@ class Plateau
         if(count($this->tuilesZero()) == 0) {
             for ($x = 0; $x < $this->size; $x++) {
                 for ($y = 0; $y < $this->size; $y++) {
-                    $val = $this->getTuile($x, $y)->getScore();
-                    $valRight = $this->getTuile($x, $y + 1);
-                    if ($valRight != null && $valRight->getScore() == $val) {
-                        return false;
-                    }
-                    $valDown = $this->getTuile($x + 1, $y);
-                    if ($valDown != null && $valDown->getScore() == $val) {
+                    if($this->canMerge($x, $y)){
                         return false;
                     }
                 }
@@ -184,7 +196,19 @@ class Plateau
             return true;
         }
         return false;
+    }
 
+    private function canMerge(int $x, int $y) : bool {
+        $val = $this->getTuile($x, $y)->getScore();
+        $valRight = $this->getTuile($x, $y + 1);
+        if ($valRight != null && $valRight->getScore() == $val) {
+            return true;
+        }
+        $valDown = $this->getTuile($x + 1, $y);
+        if ($valDown != null && $valDown->getScore() == $val) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -210,8 +234,8 @@ class Plateau
         }
 
         try {
-            $score = rand(1,100)<=10?4:2;
-            $zeroScore[random_int(0, $count - 1)]->setScore($score);
+            $randScore = rand(1,100)<=10?4:2;
+            $zeroScore[random_int(0, $count - 1)]->setScore($randScore);
         } catch (Exception $e) {
             $this->aleatTuile();
         }
@@ -224,7 +248,6 @@ class Plateau
         $i = 1;
         foreach ($this->tuiles as $ligne) {
             foreach ($ligne as $tuile) {
-//                $tuile->setScore($i+2048);
                 $tuile->setScore(0);
                 $tuile->unflagMerge();
                 $i ++;
@@ -252,9 +275,10 @@ class Plateau
         $max = 0;
         foreach ($this->tuiles as $ligne) {
             foreach ($ligne as $tuile) {
-                $score = $tuile->getScore();
-                if($score > $max)
-                    $max = $score;
+                $tuileScore = $tuile->getScore();
+                if($tuileScore > $max) {
+                    $max = $tuileScore;
+                }
             }
         }
         return $max;

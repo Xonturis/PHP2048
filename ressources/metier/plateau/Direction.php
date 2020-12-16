@@ -29,6 +29,7 @@ class Direction
             case 3: // droite
                 $this->dirY = 1;
                 break;
+            default:
         }
     }
 

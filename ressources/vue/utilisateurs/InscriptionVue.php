@@ -13,7 +13,7 @@ class InscriptionVue implements IVue
         <form method="GET" class="connexionForm">
             <div class="container">
                 <div class="text-center text-danger border border-danger">
-                    <?php  if(isset($_GET["error"]) && $_GET["error"] == true){
+                    <?php  if(isset($_GET["error"]) && $_GET["error"]){
                         echo "L'utilisateur existe déjà !";
                     }?>
                 </div>

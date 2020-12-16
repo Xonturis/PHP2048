@@ -13,6 +13,10 @@ require_once PATH_METIER."/plateau/Tuile.php";
 
 require_once PATH_MODELE."/PlateauDAO.php";
 
+require_once PATH_CONTROLEUR."/MainPageControleur.php";
+require_once PATH_CONTROLEUR."/ClassementControleur.php";
+
+
 class PlateauControleur
 {
 

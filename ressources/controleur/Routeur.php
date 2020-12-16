@@ -1,14 +1,5 @@
 <?php
 
-// Visiblement le seul moyen d'importer tous les fichiers d'un dossier
-// https://stackoverflow.com/questions/2692332/require-all-files-in-a-folder
-foreach (scandir(PATH_CONTROLEUR) as $filename) {
-    $path = PATH_CONTROLEUR. '/' . $filename;
-    if (is_file($path)) {
-        require_once($path);
-    }
-}
-
 class Routeur {
 
     private static function startOb() {
@@ -44,10 +35,12 @@ class Routeur {
         $mthdName = $_GET["method"];
 
         try {
+            $path = PATH_CONTROLEUR. '/' . $ctrlName;
+            require_once($path);
             $reflectionClass = new ReflectionClass($ctrlName);
             $method = $reflectionClass->getMethod($mthdName);
             $method->invoke(NULL);
-        } catch (ReflectionException $exp) {
+        } catch (Exception $exp) {
             echo("ERROR<br>");
             echo($exp->getMessage());
             // todo handle err

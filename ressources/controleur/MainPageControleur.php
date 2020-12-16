@@ -1,5 +1,8 @@
 <?php
 
+require_once PATH_CONTROLEUR."/PlateauControleur.php";
+require_once PATH_CONTROLEUR."/ClassementControleur.php";
+
 require_once PATH_VUE."/MainPageVue.php";
 require_once PATH_VUE."/classement/ClassementVue.php";
 require_once PATH_VUE."/controls/OptionVue.php";

@@ -10,6 +10,9 @@ require_once PATH_VUE."/controls/OptionVue.php";
 
 class MainPageControleur
 {
+    /**
+     * Affiche la page principale
+     */
     public static function showPage(){
         if(!isset($_SESSION["user"])){
             Routeur::redirectTo("ConnexionControleur", "displayConnexionPage");

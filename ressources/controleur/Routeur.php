@@ -12,6 +12,11 @@ class Routeur {
         self::callReflectiveController();
     }
 
+    /**
+     * Redirige vers un autre contrôleur
+     * @param string $controller le contrôleur cible
+     * @param string $method la méthode cible
+     */
     public static function redirectTo(string $controller, string $method) {
         $_GET["controller"] = $controller;
         $_GET["method"] = $method;

@@ -1,6 +1,7 @@
 <?php
 require_once PATH_MODELE.'/UserDAO.php';
 require_once PATH_VUE.'/utilisateurs/InscriptionVue.php';
+require_once PATH_VUE.'/ErreurVue.php';
 
 class InscriptionControleur
 {
@@ -20,8 +21,7 @@ class InscriptionControleur
             Routeur::redirectTo("MainPageControleur", "showPage");
         }
         else{
-            $_GET["error"] = true;
-            Routeur::redirectTo("InscriptionControleur", "showSignUpPage");
+            Routeur::redirectTo("ErreurControleur", "showError");
         }
     }
 }

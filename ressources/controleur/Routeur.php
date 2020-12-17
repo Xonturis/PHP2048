@@ -1,6 +1,6 @@
 <?php
 
-require_once PATH_VUE."/ErreurVue.php";
+
 
 class Routeur {
 

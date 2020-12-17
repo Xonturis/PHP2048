@@ -12,11 +12,6 @@ class InscriptionVue implements IVue
         ?>
         <form method="GET" class="connexionForm">
             <div class="container">
-                <div class="text-center text-danger border border-danger">
-                    <?php  if(isset($_GET["error"]) && $_GET["error"]){
-                        echo "L'utilisateur existe déjà !";
-                    }?>
-                </div>
                 <h3 id="title">S'inscrire</h3>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Pseudo</label>

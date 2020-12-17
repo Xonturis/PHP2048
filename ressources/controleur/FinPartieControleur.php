@@ -4,6 +4,9 @@
 class FinPartieControleur
 {
 
+    /**
+     * Affiche la vue de défaite
+     */
     public static function perdu() {
         $user = $_SESSION["user"];
         HeaderVueConnected::getHtml($user->getPseudo());
@@ -14,6 +17,9 @@ class FinPartieControleur
         PlateauDAO::savePlateauToDB($plateau, $user);
     }
 
+    /**
+     * Affiche la vue de victoire
+     */
     public static function gagne() {
         $user = $_SESSION["user"];
         HeaderVueConnected::getHtml($user->getPseudo());

@@ -1,6 +1,11 @@
 <?php
 
 
+/**
+ * Class Direction
+ * Classe intermédiaire qui gère le principe de direction quand on fait un mouvement.
+ * Passe d'une valeur humaine à une valeur logique pour le programme.
+ */
 class Direction
 {
 
@@ -34,17 +39,17 @@ class Direction
     }
 
     /**
-     * @return mixed
+     * @return int la valeur d'incrémentation vers l'axe X
      */
-    public function getDirX()
+    public function getDirX() : int
     {
         return $this->dirX;
     }
 
     /**
-     * @return mixed
+     * @return int la valeur d'incrémentation vers l'axe Y
      */
-    public function getDirY()
+    public function getDirY() : int
     {
         return $this->dirY;
     }

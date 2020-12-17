@@ -1,5 +1,4 @@
 <?php
-require_once "Ligne.php";
 require_once "Direction.php";
 require_once "Position.php";
 

@@ -23,6 +23,10 @@ class Position
         $this->direction = $direction;
     }
 
+    /**
+     * Methode recursive pour retrouver la tuile la plus lointaine qui est égale à 0 dans une direction
+     * @see Direction
+     */
     public function lePlusLoinPossible() {
         $prochainX = $this->x + $this->direction->getDirX();
         $prochainY = $this->y + $this->direction->getDirY();
@@ -35,6 +39,11 @@ class Position
         }
     }
 
+    /**
+     * @return Tuile|null la prochaine tuile (celle qui vient après la tuile la plus lointaine)
+     * @see Tuile
+     * @see Position::lePlusLoinPossible
+     */
     public function prochaineTuile() :?Tuile {
         return $this->plateau->getTuile(
             $this->x + $this->direction->getDirX(),
@@ -42,6 +51,11 @@ class Position
         );
     }
 
+    /**
+     * @return Tuile|null la tuile la plus lointaine
+     * @see Tuile
+     * @see Position::lePlusLoinPossible
+     */
     public function getTuile() :?Tuile {
         return $this->plateau->getTuile($this->x,$this->y);
     }

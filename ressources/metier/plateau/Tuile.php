@@ -1,6 +1,10 @@
 <?php
 
 
+/**
+ * Class Tuile
+ * La classe qui représente les "tuiles" du jeu (toutes les tuiles même 0)
+ */
 class Tuile
 {
 
@@ -32,6 +36,11 @@ class Tuile
         return false;
     }
 
+    /**
+     * Tente un mix entre cette tuile et une autre (valeurs doivent être égale ou 0)
+     * @param Tuile $tuile la tuile qu'on veut mixer
+     * @return bool true si le mixage a pu être effectué, false sinon
+     */
     public function mergeWith(Tuile $tuile) :bool {
         if($this->replaceWith($tuile)) {
             $this->merged = true;
@@ -40,10 +49,17 @@ class Tuile
         return false;
     }
 
+    /**
+     * Marque la tuile comme non mixée
+     * N.B. : Un seul mixage autorisé par tuile à chaque mouvement
+     */
     public function unflagMerge() {
         $this->merged = false;
     }
 
+    /**
+     * @return bool true si la tuile a été mixée, false sinon
+     */
     public function merged() :bool {
         return $this->merged;
     }

@@ -8,7 +8,6 @@ require_once PATH_VUE."/jeu/DefaiteVue.php";
 require_once PATH_VUE."/jeu/VictoireVue.php";
 
 require_once PATH_METIER."/plateau/Plateau.php";
-require_once PATH_METIER."/plateau/Ligne.php";
 require_once PATH_METIER."/plateau/Tuile.php";
 require_once PATH_METIER."/User.php";
 
@@ -18,11 +17,19 @@ require_once PATH_CONTROLEUR."/MainPageControleur.php";
 require_once PATH_CONTROLEUR."/ClassementControleur.php";
 
 
+/**
+ * Class PlateauControleur
+ * Cette classe controle tout ce qui est lié au plateau
+ * @see Plateau
+ */
 class PlateauControleur
 {
 
     private static $plateau;
 
+    /**
+     * Gère le reset
+     */
     public static function reset() {
         $user = $_SESSION["user"];
         PlateauDAO::removeAllRewinds($user);
@@ -32,6 +39,9 @@ class PlateauControleur
         MainPageControleur::showPage();
     }
 
+    /**
+     * Gère le mouvement
+     */
     public static function mouvement() {
         $mouvement = $_GET["mouvement"];
         $user = $_SESSION["user"];
@@ -57,6 +67,9 @@ class PlateauControleur
         }
     }
 
+    /**
+     * Gère le rewind ("revenir au mouvement précédant")
+     */
     public static function rewind() {
         $user = $_SESSION["user"];
         if(!PlateauDAO::hasRewinds($user)) {
@@ -75,6 +88,9 @@ class PlateauControleur
         MainPageControleur::showPage();
     }
 
+    /**
+     * Affiche le plateau
+     */
     public static function afficherPlateau() {
         if(self::$plateau == null) {
             self::$plateau = PlateauDAO::getOrCreateCurrentPlateau($_SESSION["user"]);

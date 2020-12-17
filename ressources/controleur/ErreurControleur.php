@@ -5,12 +5,18 @@ class ErreurControleur
 {
     public static function showError()
     {
+        $toDisplay = array();
         if(isset($_GET["erreur"])){
-            $toDisplay = $_GET["erreur"];
+            $toDisplay["erreur"] = $_GET["erreur"];
+        }
+
+        if(isset($_GET["user"])){
+            $toDisplay["connected"] = 1;
         }
         else{
-            $toDisplay = NULL;
+            $toDisplay["connected"] = 0;
         }
+
         ErreurVue::getHtml($toDisplay);
     }
 }

@@ -22,7 +22,7 @@ class ConnexionControleur{
             }
             Routeur::redirectTo("MainPageControleur", "showPage");
         } else {
-            Routeur::redirectTo("MainPageControleur", "showPage");
+            Routeur::redirectTo("ErreurControleur", "showError");
         }
     }
 }

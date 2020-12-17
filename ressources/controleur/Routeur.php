@@ -1,5 +1,7 @@
 <?php
 
+require_once PATH_VUE."/ErreurVue.php";
+
 class Routeur {
 
     private static function startOb() {
@@ -35,15 +37,13 @@ class Routeur {
         $mthdName = $_GET["method"];
 
         try {
-            $path = PATH_CONTROLEUR. '/' . $ctrlName;
+            $path = PATH_CONTROLEUR. '/' . $ctrlName.".php";
             require_once($path);
             $reflectionClass = new ReflectionClass($ctrlName);
             $method = $reflectionClass->getMethod($mthdName);
             $method->invoke(NULL);
         } catch (Exception $exp) {
-            echo("ERROR<br>");
-            echo($exp->getMessage());
-            // todo handle err
+            ErreurVue::getHtml();
         }
     }
 

@@ -21,6 +21,7 @@ class InscriptionControleur
             Routeur::redirectTo("MainPageControleur", "showPage");
         }
         else{
+            $_GET["erreur"] = "L'utilisateur existe déjà !";
             Routeur::redirectTo("ErreurControleur", "showError");
         }
     }

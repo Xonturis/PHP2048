@@ -29,6 +29,11 @@ class ErreurVue implements IVue
                     <p>Une erreur s'est produite : <strong><?= $toDisplay ?></strong> <br>
                         Si ça marche pas chez nous, vous pouvez aller voir ailleurs : <a
                                 href="https://2048.loicyeu.fr">https://2048.loicyeu.fr</a></p>
+                    <form method="GET">
+                        <button id="signUpButton" type="submit" class="btn btn-warning">Revenir en arrière</button>
+                        <input type="hidden" name="controller" value="MainPageControleur">
+                        <input type="hidden" name="method" value="showPage">
+                    </form>
                 </div>
         </div>
         <?php

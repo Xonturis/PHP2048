@@ -13,6 +13,8 @@ class ClassementDao{
      */
     public static function getElements(int $nb) : ?Classement{
         $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('SELECT pseudo,score,gagne FROM PARTIES ORDER BY score DESC LIMIT :nb;');
+        // Pour afficher uniquement le meilleur score des joueurs dans le classement
+//        $statement = SqliteConnexion::getInstance()->getConnexion()->prepare('SELECT pseudo,score,gagne FROM PARTIES GROUP BY pseudo HAVING max(score) ORDER BY score DESC LIMIT :nb;');
         $statement->bindParam(':nb', $nb);
         $statement->execute();
         $result = $statement->fetchAll();

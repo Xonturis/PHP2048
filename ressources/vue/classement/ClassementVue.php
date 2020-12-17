@@ -10,7 +10,6 @@ class ClassementVue implements IVue
         ?>
         <div class="tableContainer">
             <table class="table">
-                <caption>Classement des parties</caption>
                 <thead>
                 <tr>
                     <th scope="col">#</th>

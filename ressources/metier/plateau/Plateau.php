@@ -268,7 +268,7 @@ class Plateau
      */
     public function getScore(): int
     {
-        return $this->score;
+        return $this->score - 5*$this->rewindCount;
     }
 
     /**
@@ -309,6 +309,7 @@ class Plateau
 
     /**
      * Incrémente le compteur des "mouvement précédent"
+     * @see Plateau::getRewindCount()
      * @param $rewindCount int le compteur de l'objet précédent (du mouvement actuel)
      */
     public function incrementRewindCount(int $rewindCount)
@@ -316,6 +317,9 @@ class Plateau
         $this->rewindCount = $rewindCount + 1;
     }
 
+    /**
+     * @return int le compteur représentant le nombre de fois que le joueur est revenu sur son mouvement précédent
+     */
     public function getRewindCount(): int
     {
         return $this->rewindCount;

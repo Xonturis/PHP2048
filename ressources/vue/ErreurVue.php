@@ -10,8 +10,8 @@ class ErreurVue implements IVue
 
     public static function getHtml($toDisplay = NULL)
     {
-        if (isset($toDisplay["connected"]) && $toDisplay["connected"] == 1) {
-            HeaderVueConnected::getHtml();
+        if ($toDisplay["connecte"]) {
+            HeaderVueConnected::getHtml($toDisplay["pseudo"]);
         } else {
             HeaderVue::getHtml();
         }
@@ -27,7 +27,8 @@ class ErreurVue implements IVue
         ?>
         <div class="erreur">
                 <div class="text-center text-danger border border-danger bg-white">
-                    <p>Une erreur s'est produite : <strong><?= $toDisplay ?></strong> Si ça marche pas chez nous, vous pouvez allez voir ailleurs : <a
+                    <p>Une erreur s'est produite : <strong><?= $toDisplay ?></strong> <br>
+                        Si ça marche pas chez nous, vous pouvez allez voir ailleurs : <a
                                 href="https://2048.loicyeu.fr">https://2048.loicyeu.fr</a></p>
                 </div>
         </div>

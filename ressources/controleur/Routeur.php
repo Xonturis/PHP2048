@@ -49,7 +49,7 @@ class Routeur {
             $method->invoke(NULL);
         }catch(Error | Exception $e){
             require_once "ErreurControleur.php";
-            ErreurControleur::showError(array("erreur", $e->getMessage()));
+            ErreurControleur::showError(array("erreur" => $e->getMessage()));
         }
 
     }

@@ -9,11 +9,10 @@ class ErreurControleur
             $toDisplay["erreur"] = $_GET["erreur"];
         }
 
-        if(isset($_GET["user"])){
-            $toDisplay["connected"] = 1;
-        }
-        else{
-            $toDisplay["connected"] = 0;
+        $connecte = isset($_SESSION["user"]);
+        $toDisplay["connecte"] = $connecte;
+        if($connecte) {
+            $toDisplay["pseudo"] = $_SESSION["user"]->getPseudo();
         }
 
         ErreurVue::getHtml($toDisplay);

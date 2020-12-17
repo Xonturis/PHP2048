@@ -22,6 +22,7 @@ class ConnexionControleur{
             }
             Routeur::redirectTo("MainPageControleur", "showPage");
         } else {
+            $_GET["erreur"] = "Le pseudo ou le mot de passe est incorrect !";
             Routeur::redirectTo("ErreurControleur", "showError");
         }
     }

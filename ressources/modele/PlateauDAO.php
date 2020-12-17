@@ -1,5 +1,6 @@
 <?php
 
+require_once "SqliteConnexion.php";
 require_once PATH_METIER."/plateau/Plateau.php";
 
 class PlateauDAO

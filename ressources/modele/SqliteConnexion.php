@@ -1,4 +1,6 @@
 <?php
+
+require_once "SqliteConnexion.php";
 require_once("BDException.php");
 
 class SqliteConnexion{

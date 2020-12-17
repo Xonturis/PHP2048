@@ -20,7 +20,6 @@ class Plateau
         $this->rewindCount = 0;
         $this->score = 0;
         $tuiles = array();
-        $this->lignes = array();
 
         for ($x = 0; $x < $size; $x++){
             $line = array();
@@ -68,7 +67,8 @@ class Plateau
      * @param Direction $direction dans quelle direction
      * @return array[] l'ordre
      */
-    public function getRightOrder(Direction $direction) {
+    public function getRightOrder(Direction $direction): array
+    {
         $orderX = array();
         $orderY = array();
 
@@ -99,8 +99,10 @@ class Plateau
     /**
      * Effectue un mouvement
      * @param int $direction la direction
+     * @return bool
      */
-    public function move(int $direction) {
+    public function move(int $direction): bool
+    {
         $moved = false;
         $direction = new Direction($direction);
         $orders = $this->getRightOrder($direction);
@@ -118,7 +120,7 @@ class Plateau
                 $candidateTuile = $position->prochaineTuile();
                 $plusLoinTuile = $position->getTuile();
 
-                $moved = $this->tryMove($candidateTuile, $currentTuile, $plusLoinTuile);
+                $moved = $this->tryMove($candidateTuile, $currentTuile, $plusLoinTuile) || $moved;
             }
         }
 
@@ -133,6 +135,7 @@ class Plateau
      */
     private function tryMove(?Tuile $candidateTuile, ?Tuile $currentTuile, ?Tuile $plusLoinTuile): bool
     {
+        $moved = false;
         if ($candidateTuile == null) {
             if ($this->moveTuileTo($currentTuile, $plusLoinTuile)) {
                 $moved = true;
@@ -269,9 +272,10 @@ class Plateau
     }
 
     /**
-     * @return int la tuile ayant le plus gros score
+     * @return int le score le plus élevé parmi toutes les tuiles
      */
-    public function getMaxTuile() {
+    public function getMaxTuile(): int
+    {
         $max = 0;
         foreach ($this->tuiles as $ligne) {
             foreach ($ligne as $tuile) {
@@ -288,7 +292,8 @@ class Plateau
      * Génère la grille représentant l'état de la partie
      * @return array représentant l'état de la partie
      */
-    public function getIntegerGrid() {
+    public function getIntegerGrid(): array
+    {
         $grid = array();
 
         foreach($this->tuiles as $ligne) {
@@ -302,12 +307,16 @@ class Plateau
         return $grid;
     }
 
-    public function incrementRewindCount($oldCount)
+    /**
+     * Incrémente le compteur des "mouvement précédent"
+     * @param $rewindCount int le compteur de l'objet précédent (du mouvement actuel)
+     */
+    public function incrementRewindCount(int $rewindCount)
     {
-        $this->rewindCount = $oldCount + 1;
+        $this->rewindCount = $rewindCount + 1;
     }
 
-    public function getRewindCount()
+    public function getRewindCount(): int
     {
         return $this->rewindCount;
     }

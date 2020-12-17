@@ -10,6 +10,7 @@ require_once PATH_VUE."/jeu/VictoireVue.php";
 require_once PATH_METIER."/plateau/Plateau.php";
 require_once PATH_METIER."/plateau/Ligne.php";
 require_once PATH_METIER."/plateau/Tuile.php";
+require_once PATH_METIER."/User.php";
 
 require_once PATH_MODELE."/PlateauDAO.php";
 

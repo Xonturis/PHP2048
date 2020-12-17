@@ -1,5 +1,6 @@
 <?php
 
+require_once "SqliteConnexion.php";
 require_once PATH_METIER.'/classement/Classement.php';
 require_once PATH_METIER.'/classement/Score.php';
 

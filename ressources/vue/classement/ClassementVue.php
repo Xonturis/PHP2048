@@ -22,13 +22,13 @@ class ClassementVue implements IVue
                 for ($i = 0; $i < 100; $i++) {
                     ?>
                     <tr>
-                        <th scope="row"><?php echo $i+1 ?></th>
+                        <th scope="row"><?= $i+1 ?></th>
                         <?php
 
                         if (isset($toDisplay[$i])) {
                             ?>
-                            <td class="score"><?php echo $toDisplay[$i]->getName() ?></td>
-                            <td class="score"><?php echo $toDisplay[$i]->getScore() ?></td>
+                            <td class="score"><?= $toDisplay[$i]->getName() ?></td>
+                            <td class="score"><?= $toDisplay[$i]->getScore() ?></td>
                             <?php
                         } else {
                             ?>

@@ -1,7 +1,5 @@
 <?php
 
-
-
 class Routeur {
 
     private static function startOb() {
@@ -38,13 +36,17 @@ class Routeur {
 
         try {
             $path = PATH_CONTROLEUR. '/' . $ctrlName.".php";
-            require_once($path);
+            if(!@include_once($path)){
+                throw new Exception("Controller not found.");
+            }
             $reflectionClass = new ReflectionClass($ctrlName);
             $method = $reflectionClass->getMethod($mthdName);
             $method->invoke(NULL);
-        } catch (Exception $exp) {
-            ErreurVue::getHtml();
+        }catch(Error | Exception $e){
+            require_once "ErreurControleur.php";
+            ErreurControleur::showError(array("erreur", $e->getMessage()));
         }
+
     }
 
     private static function applyDefaults() {

@@ -23,12 +23,11 @@ class ErreurVue implements IVue
             $toDisplay = "";
         }
 
-
         ?>
         <div class="erreur">
                 <div class="text-center text-danger border border-danger bg-white">
                     <p>Une erreur s'est produite : <strong><?= $toDisplay ?></strong> <br>
-                        Si ça marche pas chez nous, vous pouvez allez voir ailleurs : <a
+                        Si ça marche pas chez nous, vous pouvez aller voir ailleurs : <a
                                 href="https://2048.loicyeu.fr">https://2048.loicyeu.fr</a></p>
                 </div>
         </div>

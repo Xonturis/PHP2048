@@ -17,7 +17,6 @@ class SqliteConnexion{
 			$this->connexion = new PDO("sqlite:$dir");
 			$this->connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $e) {
-			echo $e->getMessage();
 			throw new ConnexionException("problème de connexion");
 		}
 	}
